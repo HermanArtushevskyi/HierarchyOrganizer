@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "displayName": "HierarchyOrganizer",
   "unity": "2019.1",
+  "documentationUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer",
+  "licensesUrl": "",
   "dependencies": {
     
   },
+  "keywords": ["hierarchy", "organizer", "LonelyStudio"],
   "author": {
     "name": "Herman Artushevskyi",
     "email": "germanartushevskii@gmail.com",
