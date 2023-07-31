@@ -1,3 +1,16 @@
-﻿{
-  "name": "LonelyStudio.HierarchyOrganizer.Editor"
+{
+    "name": "LonelyStudio.HierarchyOrganizer.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8232604b931b1af4788f1b5b2d370609"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
