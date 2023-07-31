@@ -1,0 +1,14 @@
+﻿{
+  "name": "com.LonelyStudio.HierarchyOrganizer",
+  "version": "0.0.1",
+  "displayName": "HierarchyOrganizer",
+  "unity": "2019.1",
+  "dependencies": {
+    
+  },
+  "author": {
+    "name": "Herman Artushevskyi",
+    "email": "germanartushevskii@gmail.com",
+    "url": "https://github.com/ArtushevskiiGerman"
+  }
+}
