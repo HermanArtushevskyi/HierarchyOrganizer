@@ -1,0 +1,17 @@
+{
+    "name": "HierarchyOrganizer.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d785b6bea23685149a3c55a527f55ee4",
+        "GUID:23a243f4e4d40db4baf08c96218f9db2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
