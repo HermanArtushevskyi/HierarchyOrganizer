@@ -7,10 +7,12 @@ namespace HierarchyOrganizer.Editor.EditorView.SettingsView
 	public abstract class SettingsVariableBase : ISettingsVariable
 	{
 		protected string VariableName;
+		protected string VariableAlias;
 		
-		protected SettingsVariableBase(string name, ScrollView list)
+		protected SettingsVariableBase(string name, string alias, ScrollView list)
 		{
 			VariableName = name;
+			VariableAlias = alias;
 			AddUxml(list);
 		}
 
@@ -24,6 +26,11 @@ namespace HierarchyOrganizer.Editor.EditorView.SettingsView
 		{
 			FieldInfo field = typeof(HierarchySettings).GetField(VariableName);
 			return field.GetValue(null);
+		}
+
+		protected void ApplyAlias(Label label)
+		{
+			if (VariableAlias != null) label.text = VariableAlias;
 		}
 	}
 }

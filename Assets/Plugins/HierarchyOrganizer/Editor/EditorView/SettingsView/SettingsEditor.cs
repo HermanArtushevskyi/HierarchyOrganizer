@@ -54,20 +54,41 @@ namespace HierarchyOrganizer.Editor.EditorView.SettingsView
 			List<ISettingsVariable> variables = new List<ISettingsVariable>();
 			
 			Type settingsType = typeof(HierarchySettings);
+			
 			foreach (FieldInfo field in settingsType.GetFields())
 			{
-				if (field.FieldType == typeof(bool))
-				{
-					variables.Add(new SettingsVariableBool(field.Name, _scrollView));
-				}
-				else if (field.FieldType == typeof(Action)) continue;
-				else
-				{
-					Debug.LogWarning($"HierarchySettings: Type {field.FieldType} is not supported");
-				}
+				if (ProcessVariable(field, out ISettingsVariable variable))
+					variables.Add(variable);
 			}
 			
 			return variables;
+		}
+
+		private bool ProcessVariable(FieldInfo field, out ISettingsVariable variable)
+		{
+			string fieldName = field.Name;
+			string fieldAlias = null;
+
+			VariableAliasAttribute aliasAttribute = field.GetCustomAttribute<VariableAliasAttribute>();
+
+			if (aliasAttribute != null) fieldAlias = aliasAttribute.Alias;
+			
+			if (field.FieldType == typeof(bool))
+			{
+				variable = new SettingsVariableBool(fieldName, fieldAlias, _scrollView);
+				return true;
+			}
+
+			if (field.FieldType == typeof(Action))
+			{
+				variable = null;
+				return false;
+			}
+
+			Debug.LogWarning($"HierarchySettings: Type {field.FieldType} is not supported");
+
+			variable = null;
+			return false;
 		}
 	}
 }

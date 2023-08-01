@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.EditorView.SettingsView
@@ -14,7 +13,7 @@ namespace HierarchyOrganizer.Editor.EditorView.SettingsView
 		private bool _value;
 		private Toggle _toggle;
 
-		public SettingsVariableBool(string name, ScrollView list) : base(name, list)
+		public SettingsVariableBool(string name, string alias, ScrollView list) : base(name, alias, list)
 		{
 		}
 
@@ -30,10 +29,15 @@ namespace HierarchyOrganizer.Editor.EditorView.SettingsView
 		protected override void AddUxml(ScrollView list)
 		{
 			TemplateContainer el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
-			el.Q<Label>("VariableName").text = VariableName;
+			
+			Label label = el.Q<Label>("VariableName");
+			label.text = VariableName;
+			ApplyAlias(label);
+			
 			_toggle = el.Q<Toggle>("Toggle");
 			_toggle.value = (bool) GetCurrentVariable();
 			_value = _toggle.value;
+			
 			list.Add(el);
 		}
 	}
