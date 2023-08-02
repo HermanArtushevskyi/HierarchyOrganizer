@@ -2,9 +2,12 @@
     "name": "LonelyStudio.HierarchyOrganizer.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:8232604b931b1af4788f1b5b2d370609"
+        "GUID:8232604b931b1af4788f1b5b2d370609",
+        "GUID:478a2357cc57436488a56e564b08d223"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -2,7 +2,7 @@
 using HierarchyOrganizer.Editor.Interfaces.EditorView;
 using UnityEngine.UIElements;
 
-namespace HierarchyOrganizer.Editor.EditorView.SettingsView
+namespace HierarchyOrganizer.Editor.Settings
 {
 	public abstract class SettingsVariableBase : ISettingsVariable
 	{

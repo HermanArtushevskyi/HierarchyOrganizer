@@ -3,12 +3,12 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace HierarchyOrganizer.Editor.EditorView.SettingsView
+namespace HierarchyOrganizer.Editor.Settings
 {
 	public sealed class SettingsVariableBool : SettingsVariableBase
 	{
 		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/EditorView/SettingsView/UXML/SettingsBoolField.uxml";
+			"Assets/Plugins/HierarchyOrganizer/Editor/Settings/UXML/SettingsBoolField.uxml";
 
 		private bool _value;
 		private Toggle _toggle;

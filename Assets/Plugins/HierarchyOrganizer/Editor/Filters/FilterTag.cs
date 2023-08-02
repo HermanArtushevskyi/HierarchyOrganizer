@@ -5,14 +5,43 @@ namespace HierarchyOrganizer.Editor.Filters
 {
 	public sealed class FilterTag : FilterBase
 	{
-		private readonly Predicate<string> _tagFilter;
+		public readonly Predicate<string> TagFilter;
 		
-		public FilterTag(Predicate<string> filter) : base()
+		private string _value;
+
+		public FilterTag(string value, Mode mode)
 		{
-			_tagFilter = filter;
-			Filter = FilterFunc;
+			_value = value;
+			
+			switch (mode)
+			{
+				case Mode.Is:
+					TagFilter = IsPredicate;
+					break;
+				case Mode.Contains:
+					TagFilter = ContainsPredicate;
+					break;
+				case Mode.Exclude:
+					TagFilter = ExcludePredicate;
+					break;
+			}
+
+			Filter = PredicateFunc;
 		}
-		
-		private bool FilterFunc(GameObject go) => _tagFilter.Invoke(go.name);
+
+		public enum Mode
+		{
+			Is,
+			Contains,
+			Exclude
+		}
+
+		private bool PredicateFunc(GameObject go) => TagFilter.Invoke(go.tag);
+
+		private bool IsPredicate(string tag) => tag == _value;
+
+		private bool ContainsPredicate(string tag) => tag.Contains(_value);
+
+		private bool ExcludePredicate(string tag) => !tag.Contains(_value);
 	}
 }

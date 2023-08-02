@@ -6,19 +6,19 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace HierarchyOrganizer.Editor.EditorView.SettingsView
+namespace HierarchyOrganizer.Editor.Settings
 {
 	public class SettingsEditor : EditorWindow
 	{
 		private const string ROOT_XML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/EditorView/SettingsView/UXML/SettingsViewDocument.uxml";
+			"Assets/Plugins/HierarchyOrganizer/Editor/Settings/UXML/SettingsViewDocument.uxml";
 		
 		private static SettingsEditor window { get; set; }
 		
 		private List<ISettingsVariable> _variables;
 		private ScrollView _scrollView;
 		
-		[MenuItem("LonelyStudio/HierarchyOrganizer/Settings")]
+		[MenuItem("LonelyStudio/HierarchyOrganizer/Settings", priority = 0)]
 		private static void ShowWindow()
 		{
 			window = GetWindow<SettingsEditor>();

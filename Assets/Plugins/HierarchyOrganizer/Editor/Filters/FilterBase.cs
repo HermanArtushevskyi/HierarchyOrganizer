@@ -7,15 +7,10 @@ namespace HierarchyOrganizer.Editor.Filters
 	public abstract class FilterBase : ISceneFilter
 	{
 		protected Predicate<GameObject> Filter;
-
-		public GameObject[] GetObjects()
+		
+		public bool MeetsRequirements(GameObject go)
 		{
-			return null;
-		}
-
-		public GameObject GetObject()
-		{
-			return null;
+			return Filter.Invoke(go);
 		}
 	}
 }

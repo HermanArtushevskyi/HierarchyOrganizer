@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HierarchyOrganizer.Editor.EditorView.SettingsView
+namespace HierarchyOrganizer.Editor.Settings
 {
 	public class VariableAliasAttribute : Attribute
 	{

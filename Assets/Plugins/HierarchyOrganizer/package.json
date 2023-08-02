@@ -2,11 +2,11 @@
   "name": "com.LonelyStudio.HierarchyOrganizer",
   "version": "0.0.1",
   "displayName": "HierarchyOrganizer",
-  "unity": "2019.1",
+  "unity": "2018.1",
   "documentationUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer",
   "licensesUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer/blob/master/LICENSE.md",
   "dependencies": {
-    
+    "com.unity.editorcoroutines": "1.0.0"
   },
   "keywords": ["hierarchy", "organizer", "LonelyStudio"],
   "author": {

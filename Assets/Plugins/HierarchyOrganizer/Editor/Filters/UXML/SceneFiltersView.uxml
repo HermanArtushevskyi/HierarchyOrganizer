@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%;">
+        <ui:VisualElement name="header" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; max-height: none; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:Label tabindex="-1" text="FIND OBJECTS" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; font-size: 16px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Btns" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); max-height: none; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" mode="Horizontal" nested-interaction-kind="ForwardScrolling" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mouse-wheel-scroll-size="25" style="justify-content: flex-end; align-self: stretch; align-items: center; flex-direction: row; flex-grow: 0;">
+                <ui:Button text="Filters" display-tooltip-when-elided="true" name="filtersBtn" style="min-width: 50px; min-height: 35px;" />
+                <ui:Button text="Results" display-tooltip-when-elided="true" name="resultsBtn" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="Body" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

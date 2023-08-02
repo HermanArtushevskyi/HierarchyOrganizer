@@ -1,5 +1,5 @@
 ﻿using System;
-using HierarchyOrganizer.Editor.EditorView.SettingsView;
+using HierarchyOrganizer.Editor.Settings;
 
 namespace HierarchyOrganizer.Editor
 {
