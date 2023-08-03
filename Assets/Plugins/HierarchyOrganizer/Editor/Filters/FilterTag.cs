@@ -5,7 +5,7 @@ namespace HierarchyOrganizer.Editor.Filters
 {
 	public sealed class FilterTag : FilterBase
 	{
-		public readonly Predicate<string> TagFilter;
+		private readonly Predicate<string> _tagFilter;
 		
 		private string _value;
 
@@ -16,13 +16,13 @@ namespace HierarchyOrganizer.Editor.Filters
 			switch (mode)
 			{
 				case Mode.Is:
-					TagFilter = IsPredicate;
+					_tagFilter = IsPredicate;
 					break;
 				case Mode.Contains:
-					TagFilter = ContainsPredicate;
+					_tagFilter = ContainsPredicate;
 					break;
 				case Mode.Exclude:
-					TagFilter = ExcludePredicate;
+					_tagFilter = ExcludePredicate;
 					break;
 			}
 
@@ -36,7 +36,7 @@ namespace HierarchyOrganizer.Editor.Filters
 			Exclude
 		}
 
-		private bool PredicateFunc(GameObject go) => TagFilter.Invoke(go.tag);
+		private bool PredicateFunc(GameObject go) => _tagFilter.Invoke(go.tag);
 
 		private bool IsPredicate(string tag) => tag == _value;
 

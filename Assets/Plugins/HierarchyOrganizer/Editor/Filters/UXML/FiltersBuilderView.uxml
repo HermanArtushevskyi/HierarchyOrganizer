@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="addedFilters" style="width: 95%; min-height: 60px; justify-content: flex-start; align-items: auto; align-self: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-top: 20px;" />
+        <ui:VisualElement name="createField" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row; width: 100%; justify-content: flex-end;">
+            <ui:EnumField type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" value="Center" include-obsolete-values="true" style="justify-content: flex-start; align-items: center; align-self: auto; flex-shrink: 1; flex-wrap: nowrap; flex-grow: 1; min-height: 75px; max-width: 25%;" />
+            <ui:Button text="Add" display-tooltip-when-elided="true" enable-rich-text="true" name="addBtn" style="justify-content: space-between; align-items: center; align-self: center; min-width: 15%; min-height: 35px;" />
+            <ui:Button text="Clear" display-tooltip-when-elided="true" enable-rich-text="true" name="clearBtn" style="justify-content: space-between; align-items: center; align-self: center; min-width: 15%; min-height: 35px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
