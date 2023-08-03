@@ -27,22 +27,29 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private Button _clearButton = null;
 		#endregion
 
-		private List<ISceneFilter> _addedFilters = new List<ISceneFilter>();
+		private readonly List<ISceneFilter> _addedFilters = new List<ISceneFilter>();
 
 		public FiltersBuilderViewAdapter()
 		{
 		}
 
-		public ISceneFilter[] GetFilters() => _addedFilters.ToArray();
-
-		public void Init(VisualElement root)
+		public void Init(VisualElement root, object _)
 		{
 			_root = root;
 			AddUXML(root);
 			RegisterButtons();
 		}
 
-		public void Destroy() => _root.Remove(_el);
+		public bool RequestUserData(out object userData)
+		{
+			userData = _addedFilters;
+			return true;
+		}
+
+		public void Destroy()
+		{
+			_root.Clear();
+		}
 
 		private void AddUXML(VisualElement root)
 		{

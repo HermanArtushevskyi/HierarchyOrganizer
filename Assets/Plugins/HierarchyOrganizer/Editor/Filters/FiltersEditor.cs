@@ -13,11 +13,13 @@ namespace HierarchyOrganizer.Editor.Filters
 		private VisualElement _body;
 		private IViewAdapter _currentAdapter;
 
+		private object _userData;
+		
 		[MenuItem("LonelyStudio/HierarchyOrganizer/Find", priority = 1)]
 		private static void ShowWindow()
 		{
 			var window = GetWindow<FiltersEditor>();
-			window.titleContent = new GUIContent("Find on scene");
+			window.titleContent = new GUIContent("Find");
 			window.Show();
 		}
 
@@ -26,14 +28,20 @@ namespace HierarchyOrganizer.Editor.Filters
 			rootVisualElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate());
 			_body = rootVisualElement.Q<VisualElement>("Body");
 
-			_currentAdapter = CreateFiltersBuilderView();
+			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersBuilderViewAdapter());
+			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(null);
+			
+			_currentAdapter = SwitchAdapter(new FiltersBuilderViewAdapter());
 		}
 
-		private IViewAdapter CreateFiltersBuilderView()
+		private IViewAdapter SwitchAdapter(IViewAdapter adapter)
 		{
+			if (_currentAdapter != null && _currentAdapter.RequestUserData(out var userData)) _userData = userData;
 			_currentAdapter?.Destroy();
-			FiltersBuilderViewAdapter view = new FiltersBuilderViewAdapter();
-			view.Init(_body);
+			
+			IViewAdapter view = adapter;
+			view.Init(_body, _userData);
+			
 			return view;
 		}
 	}

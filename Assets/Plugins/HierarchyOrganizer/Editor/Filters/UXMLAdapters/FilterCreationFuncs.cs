@@ -7,7 +7,6 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 	{
 		private static void AddTagFilter(ScrollView view)
 		{
-			throw new NotImplementedException();
 		}
 	}
 }

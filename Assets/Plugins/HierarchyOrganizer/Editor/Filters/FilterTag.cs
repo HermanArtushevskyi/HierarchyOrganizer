@@ -9,7 +9,7 @@ namespace HierarchyOrganizer.Editor.Filters
 		
 		private string _value;
 
-		public FilterTag(string value, Mode mode)
+		public FilterTag(string value = null, Mode mode = Mode.Is)
 		{
 			_value = value;
 			
