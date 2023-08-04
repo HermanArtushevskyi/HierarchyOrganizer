@@ -8,15 +8,10 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
 	public partial class FiltersBuilderViewAdapter : IViewAdapter
 	{
-		#region Static variables
 		private const string UXML_PATH =
 			"Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/FiltersBuilderView.uxml";
 
-		private static Dictionary<AvailableFilter, Action<ScrollView>> FilterToFunc = new()
-		{
-			{AvailableFilter.Tag, AddTagFilter}
-		};
-		#endregion
+		private Dictionary<AvailableFilter, Action<ScrollView>> FilterToFunc;
 
 		#region UXML elements
 		private VisualElement _root = null;
@@ -27,10 +22,14 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private Button _clearButton = null;
 		#endregion
 
-		private readonly List<ISceneFilter> _addedFilters = new List<ISceneFilter>();
+		private readonly List<ISceneFilterAdapter> _addedFilters = new List<ISceneFilterAdapter>();
 
 		public FiltersBuilderViewAdapter()
 		{
+			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
+			{
+				{AvailableFilter.Tag, AddTagFilter}
+			};
 		}
 
 		public void Init(VisualElement root, object _)
@@ -65,6 +64,14 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private void RegisterButtons()
 		{
 			_addButton.clicked += () => FilterToFunc[(AvailableFilter) _enumField.value].Invoke(_scrollView);
+			_clearButton.clicked += () =>
+			{
+				foreach (ISceneFilterAdapter adapter in _addedFilters)
+				{
+					adapter.DestroyWithoutNotification();
+				}
+				_addedFilters.Clear();
+			};
 		}
 	}
 }
