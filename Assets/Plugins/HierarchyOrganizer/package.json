@@ -1,7 +1,7 @@
 ﻿{
   "name": "com.LonelyStudio.HierarchyOrganizer",
-  "version": "0.0.1",
   "displayName": "HierarchyOrganizer",
+  "version": "0.0.1",
   "unity": "2018.1",
   "documentationUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer",
   "licensesUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer/blob/master/LICENSE.md",

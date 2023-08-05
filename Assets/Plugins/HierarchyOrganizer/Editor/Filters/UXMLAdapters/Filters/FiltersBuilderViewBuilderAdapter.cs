@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Plugins.HierarchyOrganizer.Editor.Interfaces.Filters;
+using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public partial class FiltersBuilderViewAdapter : IViewAdapter
+	// TODO: Implement loading data after switching between tabs
+	public partial class FiltersBuilderViewBuilderAdapter : IViewBuilderAdapter
 	{
 		private const string UXML_PATH =
 			"Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/FiltersBuilderView.uxml";
@@ -22,9 +23,11 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private Button _clearButton = null;
 		#endregion
 
-		private readonly List<ISceneFilterAdapter> _addedFilters = new List<ISceneFilterAdapter>();
+		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
-		public FiltersBuilderViewAdapter()
+		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+
+		public FiltersBuilderViewBuilderAdapter()
 		{
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
@@ -32,7 +35,12 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			};
 		}
 
-		public void Init(VisualElement root, object _)
+		public void Init(VisualElement root)
+		{
+			Init(root, null);
+		}
+
+		public void Init(VisualElement root, object data)
 		{
 			_root = root;
 			AddUXML(root);
@@ -46,6 +54,12 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		}
 
 		public void Destroy()
+		{
+			DestroyWithoutNotification();
+			OnDestroy?.Invoke(this);
+		}
+
+		public void DestroyWithoutNotification()
 		{
 			_root.Clear();
 		}
@@ -66,7 +80,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			_addButton.clicked += () => FilterToFunc[(AvailableFilter) _enumField.value].Invoke(_scrollView);
 			_clearButton.clicked += () =>
 			{
-				foreach (ISceneFilterAdapter adapter in _addedFilters)
+				foreach (ISceneFilterElementAdapter adapter in _addedFilters)
 				{
 					adapter.DestroyWithoutNotification();
 				}

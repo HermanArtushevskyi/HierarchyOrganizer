@@ -1,6 +1,6 @@
 ﻿namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public partial class FiltersBuilderViewAdapter
+	public partial class FiltersBuilderViewBuilderAdapter
 	{
 		private enum AvailableFilter
 		{
