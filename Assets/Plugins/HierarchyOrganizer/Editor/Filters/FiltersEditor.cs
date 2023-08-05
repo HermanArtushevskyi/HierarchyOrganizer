@@ -11,7 +11,7 @@ namespace HierarchyOrganizer.Editor.Filters
 		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/SceneFiltersView.uxml";
 
 		private VisualElement _body;
-		private IViewAdapter _currentAdapter;
+		private IViewBuilderAdapter _currentBuilderAdapter;
 
 		private object _userData;
 		
@@ -28,21 +28,21 @@ namespace HierarchyOrganizer.Editor.Filters
 			rootVisualElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate());
 			_body = rootVisualElement.Q<VisualElement>("Body");
 
-			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersBuilderViewAdapter());
-			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(null);
+			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
+			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(new ResultsBuilderViewAdapter());
 			
-			_currentAdapter = SwitchAdapter(new FiltersBuilderViewAdapter());
+			_currentBuilderAdapter = SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
 		}
 
-		private IViewAdapter SwitchAdapter(IViewAdapter adapter)
+		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter)
 		{
-			if (_currentAdapter != null && _currentAdapter.RequestUserData(out var userData)) _userData = userData;
-			_currentAdapter?.Destroy();
+			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)) _userData = userData;
+			_currentBuilderAdapter?.Destroy();
 			
-			IViewAdapter view = adapter;
-			view.Init(_body, _userData);
+			IViewBuilderAdapter viewBuilder = builderAdapter;
+			viewBuilder.Init(_body, _userData);
 			
-			return view;
+			return viewBuilder;
 		}
 	}
 }

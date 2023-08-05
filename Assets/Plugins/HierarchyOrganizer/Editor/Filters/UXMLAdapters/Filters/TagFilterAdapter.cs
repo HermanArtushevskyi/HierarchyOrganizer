@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public class TagFilterAdapter : ISceneFilterAdapter
+	public class TagFilterElementAdapter : ISceneFilterElementAdapter
 	{
 		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/Filters/TagFilterView.uxml";
 
@@ -16,7 +16,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private TextField _textField;
 		private Button _deleteButton;
 
-		public event Action<TagFilterAdapter> OnDelete = null;
+		public event Action<TagFilterElementAdapter> OnDelete = null;
 
 		public void Init(VisualElement root)
 		{

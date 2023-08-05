@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public partial class FiltersBuilderViewAdapter : IViewAdapter
+	public partial class FiltersBuilderViewBuilderAdapter : IViewBuilderAdapter
 	{
 		private const string UXML_PATH =
 			"Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/FiltersBuilderView.uxml";
@@ -22,14 +22,21 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private Button _clearButton = null;
 		#endregion
 
-		private readonly List<ISceneFilterAdapter> _addedFilters = new List<ISceneFilterAdapter>();
+		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
-		public FiltersBuilderViewAdapter()
+		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+
+		public FiltersBuilderViewBuilderAdapter()
 		{
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
 				{AvailableFilter.Tag, AddTagFilter}
 			};
+		}
+
+		public void Init(VisualElement root)
+		{
+			Init(root, null);
 		}
 
 		public void Init(VisualElement root, object _)
@@ -41,11 +48,19 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public bool RequestUserData(out object userData)
 		{
-			userData = _addedFilters;
+			List<ISceneFilter> filters = new();
+			foreach (ISceneFilterElementAdapter adapter in _addedFilters) filters.Add(adapter.GetFilter());
+			userData = filters;
 			return true;
 		}
 
 		public void Destroy()
+		{
+			DestroyWithoutNotification();
+			OnDestroy?.Invoke(this);
+		}
+
+		public void DestroyWithoutNotification()
 		{
 			_root.Clear();
 		}
@@ -66,7 +81,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			_addButton.clicked += () => FilterToFunc[(AvailableFilter) _enumField.value].Invoke(_scrollView);
 			_clearButton.clicked += () =>
 			{
-				foreach (ISceneFilterAdapter adapter in _addedFilters)
+				foreach (ISceneFilterElementAdapter adapter in _addedFilters)
 				{
 					adapter.DestroyWithoutNotification();
 				}

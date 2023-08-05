@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; flex-direction: row; justify-content: space-around; align-self: center;">
+        <ui:IMGUIContainer name="Icon" style="width: 64px; height: 64px; align-self: center;" />
+        <ui:Label tabindex="-1" text="SomeName" display-tooltip-when-elided="true" name="name" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-center; justify-content: flex-start; align-self: center; font-size: 16px;" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="tag" style="align-self: center; font-size: 16px; text-overflow: clip; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="check" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; min-width: 75px; justify-content: flex-end; align-self: center;" />
+    </ui:VisualElement>
+</ui:UXML>
