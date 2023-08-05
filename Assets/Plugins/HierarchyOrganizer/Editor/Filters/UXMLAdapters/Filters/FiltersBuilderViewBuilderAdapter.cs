@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
+	// TODO: Implement loading data after switching between tabs
 	public partial class FiltersBuilderViewBuilderAdapter : IViewBuilderAdapter
 	{
 		private const string UXML_PATH =
@@ -39,7 +40,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			Init(root, null);
 		}
 
-		public void Init(VisualElement root, object _)
+		public void Init(VisualElement root, object data)
 		{
 			_root = root;
 			AddUXML(root);
@@ -48,9 +49,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public bool RequestUserData(out object userData)
 		{
-			List<ISceneFilter> filters = new();
-			foreach (ISceneFilterElementAdapter adapter in _addedFilters) filters.Add(adapter.GetFilter());
-			userData = filters;
+			userData = _addedFilters;
 			return true;
 		}
 

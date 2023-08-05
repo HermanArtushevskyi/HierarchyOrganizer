@@ -36,11 +36,14 @@ namespace HierarchyOrganizer.Editor.Filters
 
 		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter)
 		{
+			if (_currentBuilderAdapter == builderAdapter) return _currentBuilderAdapter;
 			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)) _userData = userData;
 			_currentBuilderAdapter?.Destroy();
 			
 			IViewBuilderAdapter viewBuilder = builderAdapter;
 			viewBuilder.Init(_body, _userData);
+
+			_currentBuilderAdapter = builderAdapter;
 			
 			return viewBuilder;
 		}

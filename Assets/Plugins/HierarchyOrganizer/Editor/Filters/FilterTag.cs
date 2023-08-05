@@ -42,6 +42,6 @@ namespace HierarchyOrganizer.Editor.Filters
 
 		private bool ContainsPredicate(string tag) => tag.Contains(_value);
 
-		private bool ExcludePredicate(string tag) => !tag.Contains(_value);
+		private bool ExcludePredicate(string tag) => tag != _value;
 	}
 }
