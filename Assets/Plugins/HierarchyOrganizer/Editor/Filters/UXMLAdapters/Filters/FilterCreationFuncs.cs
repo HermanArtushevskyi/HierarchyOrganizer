@@ -1,4 +1,4 @@
-﻿using Plugins.HierarchyOrganizer.Editor.Interfaces.Filters;
+﻿using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters

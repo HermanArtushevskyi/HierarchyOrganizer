@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Plugins.HierarchyOrganizer.Editor.Interfaces.Filters;
+using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEngine.UIElements;
 

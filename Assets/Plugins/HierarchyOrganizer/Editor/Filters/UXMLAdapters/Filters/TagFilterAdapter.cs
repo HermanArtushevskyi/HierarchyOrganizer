@@ -1,5 +1,5 @@
 ﻿using System;
-using Plugins.HierarchyOrganizer.Editor.Interfaces.Filters;
+using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
