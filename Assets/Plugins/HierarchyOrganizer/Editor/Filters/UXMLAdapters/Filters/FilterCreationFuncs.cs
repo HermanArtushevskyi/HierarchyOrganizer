@@ -12,7 +12,14 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			_addedFilters.Add(elementAdapter);
 			elementAdapter.OnDelete += DeleteFilterFromList;
 		}
+        private void AddNameFilter(ScrollView view)
+        {
+            NameFilterElementAdapter elementAdapter = new NameFilterElementAdapter();
+            elementAdapter.Init(view);
+            _addedFilters.Add(elementAdapter);
+            elementAdapter.OnDelete += DeleteFilterFromList;
+        }
 
-		private void DeleteFilterFromList(ISceneFilterElementAdapter elementAdapter) => _addedFilters.Remove(elementAdapter);
+        private void DeleteFilterFromList(ISceneFilterElementAdapter elementAdapter) => _addedFilters.Remove(elementAdapter);
 	}
 }
