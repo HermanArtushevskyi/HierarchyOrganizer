@@ -2,7 +2,7 @@
 
 namespace HierarchyOrganizer.Editor.Interfaces.Hierarchy
 {
-	public interface IFix
+	public interface IRestructure
 	{
 		public void Do(GameObject obj);
 		public void Undo(GameObject obj);

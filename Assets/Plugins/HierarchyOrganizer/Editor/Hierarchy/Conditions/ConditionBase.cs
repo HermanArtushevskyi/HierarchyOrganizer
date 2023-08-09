@@ -9,9 +9,5 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 		protected Predicate<GameObject> Condition;
 
 		public bool IsMet(GameObject subject) => Condition.Invoke(subject);
-
-		public abstract void Do(GameObject obj);
-
-		public abstract void Undo(GameObject obj);
 	}
 }

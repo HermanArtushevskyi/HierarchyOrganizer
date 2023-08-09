@@ -6,5 +6,6 @@ namespace HierarchyOrganizer.Editor.Interfaces.Hierarchy
 	{
 		public string Name { get; }
 		public List<ICondition> Conditions { get; }
+		public List<IRestructure> Restructures { get; }
 	}
 }

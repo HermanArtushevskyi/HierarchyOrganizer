@@ -2,7 +2,7 @@
 
 namespace HierarchyOrganizer.Editor.Interfaces.Hierarchy
 {
-	public interface ICondition : IFix
+	public interface ICondition
 	{
 		public bool IsMet(GameObject subject);
 	}
