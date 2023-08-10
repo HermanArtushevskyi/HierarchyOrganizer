@@ -6,7 +6,7 @@
   "documentationUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer",
   "licensesUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer/blob/master/LICENSE.md",
   "dependencies": {
-    "com.unity.editorcoroutines": "1.0.0"
+    "net.tnrd.serializableinterface": "https://github.com/Thundernerd/Unity3D-SerializableInterface.git"
   },
   "keywords": ["hierarchy", "organizer", "LonelyStudio"],
   "author": {
