@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Restructurers
 {
-	public abstract class RestructureBase : IRestructure
+	public abstract class RestructureBase : ScriptableObject, IRestructure
 	{
 		public abstract void Do(GameObject obj);
 

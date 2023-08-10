@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 {
-	public abstract class ConditionBase : ICondition
+	public abstract class ConditionBase : ScriptableObject, ICondition
 	{
 		protected Predicate<GameObject> Condition;
 
