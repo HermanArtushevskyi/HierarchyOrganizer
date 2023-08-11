@@ -18,7 +18,11 @@ MonoBehaviour:
     unityReference: {fileID: 11400000, guid: bc5a9de03fbf76c478511518cea39f9f, type: 2}
     rawReference:
       rid: -2
-  _serializableRestructures: []
+  _serializableRestructures:
+  - mode: 0
+    unityReference: {fileID: 11400000, guid: c70ddea06f54ec64da3565484f0b4b10, type: 2}
+    rawReference:
+      rid: -2
   references:
     version: 2
     RefIds:
