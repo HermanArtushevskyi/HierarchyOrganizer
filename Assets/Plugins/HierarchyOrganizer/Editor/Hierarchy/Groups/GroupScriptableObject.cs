@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
+using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Factories;
 using TNRD;
 using UnityEngine;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Groups
 {
-	[CreateAssetMenu(fileName = "Group", menuName = "HierarchyOrganizer/Group", order = 0)]
+	[CreateAssetMenu(fileName = "Group", menuName = "HierarchyOrganizer/Group", order = -1)]
 	public class GroupScriptableObject : ScriptableObject, IGroup
 	{
 		[SerializeField] private string _name;
 
-		[SerializeField] private SerializableInterface<ICondition>[] _serializableConditions;
-		[SerializeField] private SerializableInterface<IRestructure>[] _serializableRestructures;
+		[SerializeField] private SerializableInterface<IConditionFactory>[] _serializableConditions;
+		[SerializeField] private SerializableInterface<IRestructureFactory>[] _serializableRestructures;
 
 		private ICondition[] _conditions
 		{
@@ -21,7 +22,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Groups
 				ICondition[] arr = new ICondition[_serializableConditions.Length];
 				for (int i = 0; i < _serializableConditions.Length; i++)
 				{
-					arr[i] = _serializableConditions[i].Value;
+					arr[i] = _serializableConditions[i].Value.Create();
 				}
 
 				return arr;
@@ -35,7 +36,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Groups
 				IRestructure[] arr = new IRestructure[_serializableRestructures.Length];
 				for (int i = 0; i < _serializableRestructures.Length; i++)
 				{
-					arr[i] = _serializableRestructures[i].Value;
+					arr[i] = _serializableRestructures[i].Value.Create();
 				}
 
 				return arr;

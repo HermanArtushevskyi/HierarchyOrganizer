@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4447f649f9b47268382d8c942b47ba7, type: 3}
   m_Name: TestGroup1
   m_EditorClassIdentifier: 
-  _name: 
-  _serializableConditions: []
+  _name: TestGroup
+  _serializableConditions:
+  - mode: 0
+    unityReference: {fileID: 11400000, guid: bc5a9de03fbf76c478511518cea39f9f, type: 2}
+    rawReference:
+      rid: -2
   _serializableRestructures: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
