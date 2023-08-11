@@ -42,7 +42,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 			};
 		}
 
-		private bool PrototypePredicate(Component script) => false;
+		private bool PrototypePredicate(Component script) => throw new NotImplementedException();
 
 		private bool HasPredicate(GameObject obj) => obj.TryGetComponent(_scriptType, out _);
 
