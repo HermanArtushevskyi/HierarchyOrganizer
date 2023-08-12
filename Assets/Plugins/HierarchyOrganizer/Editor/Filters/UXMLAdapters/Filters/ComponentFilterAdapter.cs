@@ -35,13 +35,19 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
         
 
 
-        public ISceneFilter GetFilter() => new FilterComponent(_textField.value, (FilterComponent.Mode)_modeField.value);
+       public ISceneFilter GetFilter()
+{
+    var mode = (FilterComponent.Mode)_modeField.value;
+    var filterValue = _textField.value;
+    return new FilterComponent(filterValue, mode);
+}
+
         
         public bool ValidateGameObject(GameObject go)
         {
-            return new FilterComponent(_textField.value, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
+            return new FilterComponent
+                (_textField.value, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
         }
-
         public void Destroy()
         {
             DestroyWithoutNotification();
