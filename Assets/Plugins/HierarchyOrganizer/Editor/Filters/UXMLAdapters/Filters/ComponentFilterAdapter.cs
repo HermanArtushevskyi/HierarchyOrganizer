@@ -29,11 +29,11 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
             _textField = _el.Q<TextField>();
             _el.Q<Button>().clicked += Destroy;
 
-            _modeField.Init(FilterComponent.Mode.Is);
+            _modeField.Init(FilterComponent.Mode.Contains);
             _textField.value = "";
         }
         
-
+       
 
        public ISceneFilter GetFilter()
 {

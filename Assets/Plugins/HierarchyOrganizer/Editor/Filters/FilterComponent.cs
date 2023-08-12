@@ -9,7 +9,7 @@ namespace HierarchyOrganizer.Editor.Filters
 
         private string _value;
 
-        public FilterComponent(string value = null, Mode mode = Mode.Is)
+        public FilterComponent(string value = null, Mode mode = Mode.Contains)
         {
             _value = value;
 
