@@ -36,7 +36,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 
         public ISceneFilter GetFilter() => new FilterComponent(_textField.value, (FilterComponent.Mode)_modeField.value);
-
+        
         public bool ValidateGameObject(GameObject go)
         {
             return new FilterComponent(_textField.value, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
