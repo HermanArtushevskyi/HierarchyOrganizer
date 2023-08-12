@@ -16,14 +16,12 @@ namespace HierarchyOrganizer.Editor.Filters
             switch (mode)
             {
                 case Mode.Contains:
-                    _componentFilter = ContainsPredicate;
+                    Filter = IncludePredicate;
                     break;
                 case Mode.Exclude:
-                    _componentFilter = ExcludePredicate;
+                    Filter = ExcludePredicate;
                     break;
             }
-
-            Filter = PredicateFunc;
         }
 
         public enum Mode
