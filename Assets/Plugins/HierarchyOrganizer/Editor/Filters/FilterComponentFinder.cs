@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ComponentFinder : MonoBehaviour
+public sealed class FindComponent : MonoBehaviour
 {
 
     // Строка для хранения названия компонента
-    private string componentName;
+    public string componentName;
     private string _value;
     // Метод, который принимает название компонента и ищет его во всех игровых объектах
-    void FindComponent(string value = null)
+    public FindComponent(string value = null)
     {
         _value = value;
         // Создаем массив из всех игровых объектов в сцене
