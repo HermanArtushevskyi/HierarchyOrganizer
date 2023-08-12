@@ -7,9 +7,9 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 	public class GlobalViewPresenter : IViewPresenter
 	{
 		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/GlobalGroupsWindow/UXML/GlobalView.uxml";
-
+		
 		private ScrollView _scrollView;
-
+		
 		private VisualElement _root;
 		
 		public void Init(VisualElement root)
@@ -21,7 +21,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 			
 			_scrollView = el.Q<ScrollView>();
 		}
-
+		
 		public void Destroy()
 		{
 			_root.Clear();
