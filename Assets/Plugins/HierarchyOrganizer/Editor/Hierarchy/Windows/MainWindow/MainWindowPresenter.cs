@@ -47,7 +47,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 
 		private void SwitchPresenter(IViewPresenter presenter)
 		{
-			if (presenter == _currentPresenter) return;
+			if (presenter.Equals(_currentPresenter)) return;
 			
 			_currentPresenter?.Destroy();
 			_currentPresenter = presenter;
