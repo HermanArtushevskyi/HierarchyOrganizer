@@ -30,6 +30,8 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 			Init(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate());
 		}
 
+		public event Action OnDestroy;
+
 		public void Init(VisualElement root)
 		{
 			rootVisualElement.Add(root);
@@ -42,18 +44,19 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 			
 			SwitchPresenter(new GlobalViewPresenter());
 		}
-		
-		public void Destroy()
-		{
-		}
 
 		private void SwitchPresenter(IViewPresenter presenter)
 		{
 			if (presenter == _currentPresenter) return;
 			
 			_currentPresenter?.Destroy();
-			presenter.Init(_body);
 			_currentPresenter = presenter;
+			presenter.Init(_body);
+		}
+
+		public void Destroy()
+		{
+			OnDestroy?.Invoke();
 		}
 	}
 }
