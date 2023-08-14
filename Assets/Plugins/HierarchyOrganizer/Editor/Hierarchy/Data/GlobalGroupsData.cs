@@ -15,6 +15,5 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 		{
 			GlobalGroupsGUID = groupsGUID;
 		}
-		
 	}
 }
