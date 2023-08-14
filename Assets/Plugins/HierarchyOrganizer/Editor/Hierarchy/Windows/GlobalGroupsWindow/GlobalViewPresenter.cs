@@ -4,7 +4,9 @@ using HierarchyOrganizer.Editor.Hierarchy.Data;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
+using TNRD;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
@@ -27,8 +29,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 
 		public void Init(VisualElement root)
 		{
-			_globalService = GlobalGroupsData.GetInstance();
-			
 			TemplateContainer el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
 
 			_root = root;
@@ -38,6 +38,8 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 			_addBtn = el.Q<Button>("addBtn");
 			_clearBtn = el.Q<Button>("clearBtn");
 			_saveBtn = el.Q<Button>("saveBtn");
+
+			LoadData();
 
 			_addBtn.clicked += () =>
 			{
@@ -55,16 +57,14 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 
 			_saveBtn.clicked += () =>
 			{
-				foreach (GroupVariableAdapter adapter in _groupAdapters)
-				{
-					_globalService.GlobalGroups.Clear();
-					_globalService.GlobalGroups.Add(adapter.GetData() as IGroup);
-				}
-				
-				_globalService.SaveData();
-			};
+				List<IGroup> _groups = new();
+				foreach (GroupVariableAdapter adapter in _groupAdapters) _groups.Add((IGroup) adapter.GetData());
 
-			LoadData();
+				_globalService.SetGlobalGroups(_groups.ToArray());
+				EditorUtility.SetDirty(_globalService);
+				AssetDatabase.SaveAssetIfDirty(_globalService);
+				AssetDatabase.Refresh();
+			};
 		}
 
 		private void DeleteFromList(GroupVariableAdapter obj) => _groupAdapters.Remove(obj);
@@ -77,6 +77,17 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 
 		private void LoadData()
 		{
+			_globalService = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GlobalGroupsData.PATH);
+
+			if (_globalService.GlobalGroups == null) return;
+			
+			foreach (IGroup serializableGroup in _globalService.GlobalGroups)
+			{
+				GroupVariableAdapter adapter = new GroupVariableAdapter();
+				_groupAdapters.Add(adapter);
+				adapter.Init(_scrollView, serializableGroup);
+				adapter.OnDestroyThis += DeleteFromList;
+			}
 		}
 	}
 }
