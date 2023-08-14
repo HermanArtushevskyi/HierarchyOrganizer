@@ -44,7 +44,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 			
 			SwitchPresenter(new GlobalViewPresenter());
 		}
-
+		
 		private void SwitchPresenter(IViewPresenter presenter)
 		{
 			if (presenter.Equals(_currentPresenter)) return;

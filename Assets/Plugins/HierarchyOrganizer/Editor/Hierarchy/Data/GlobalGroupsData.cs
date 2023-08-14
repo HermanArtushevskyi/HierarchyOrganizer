@@ -1,20 +1,19 @@
-﻿using System.Collections.Generic;
-using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
+﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Data
 {
+	[CreateAssetMenu(fileName = "Global data", menuName = "HierarchyOrganizer/GlobalData")]
+	[Serializable]
 	public class GlobalGroupsData : ScriptableObject
 	{
 		public const string PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/GlobalData.asset";
-
-		[SerializeField] public IGroup[] GlobalGroups;
-		[SerializeField] public Dictionary<Scene, IGroup[]> SceneGroups;
-
-		public void SetGlobalGroups(IGroup[] groups)
+		
+		[SerializeField] public string[] GlobalGroupsGUID;
+		
+		public void SetGlobalGroups(string[] groupsGUID)
 		{
-			GlobalGroups = groups;
+			GlobalGroupsGUID = groupsGUID;
 		}
 	}
 }

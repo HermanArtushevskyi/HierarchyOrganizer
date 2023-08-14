@@ -5,7 +5,6 @@ using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable
 {
@@ -34,11 +33,11 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable
 			root.Add(_el);
 		}
 
-		public void Init(VisualElement root, IGroup group)
+		public void Init(VisualElement root, GroupScriptableObject group)
 		{
 			Init(root);
 
-			_field.value = (Object) group;
+			_field.value = group;
 		}
 
 		public void Destroy()
