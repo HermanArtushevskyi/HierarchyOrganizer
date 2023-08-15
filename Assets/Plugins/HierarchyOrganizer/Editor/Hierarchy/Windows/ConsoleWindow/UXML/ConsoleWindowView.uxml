@@ -3,7 +3,7 @@
         <uie:Toolbar>
             <uie:ToolbarButton text="Fix" display-tooltip-when-elided="true" name="fixBtn" />
             <uie:ToolbarSpacer />
-            <uie:ToolbarButton text="Refresh" display-tooltip-when-elided="true" />
+            <uie:ToolbarButton text="Refresh" display-tooltip-when-elided="true" name="refreshBtn" />
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: flex-end;">
                 <uie:ToolbarButton display-tooltip-when-elided="true" name="undoBtn" style="background-image: url(&apos;project://database/Assets/Plugins/HierarchyOrganizer/Graphics/Undo.png?fileID=2800000&amp;guid=fce1421559e95a44e9c60f0c3876dbbb&amp;type=3#Undo&apos;); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: scale-to-fit; min-width: 25px; min-height: auto; -unity-background-image-tint-color: rgb(144, 144, 144);" />
                 <uie:ToolbarButton display-tooltip-when-elided="true" name="redoBtn" style="background-image: url(&apos;project://database/Assets/Plugins/HierarchyOrganizer/Graphics/Redo.png?fileID=2800000&amp;guid=5ec62df11c7ea844395db888bcd06801&amp;type=3#Redo&apos;); -unity-background-scale-mode: scale-to-fit; min-width: 25px; -unity-background-image-tint-color: rgb(149, 149, 149); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;" />

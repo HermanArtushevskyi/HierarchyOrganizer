@@ -42,7 +42,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 
 			root.Q<ToolbarButton>("globalBtn").clicked += () => SwitchPresenter(new GlobalViewPresenter());
 			root.Q<ToolbarButton>("localBtn").clicked += () => throw new NotImplementedException();
-			root.Q<ToolbarButton>("consoleBtn").clicked += () => SwitchPresenter(new ConsoleViewPresenter());
+			root.Q<ToolbarButton>("issueBtn").clicked += () => SwitchPresenter(new ConsoleViewPresenter());
 			
 			SwitchPresenter(new GlobalViewPresenter());
 		}

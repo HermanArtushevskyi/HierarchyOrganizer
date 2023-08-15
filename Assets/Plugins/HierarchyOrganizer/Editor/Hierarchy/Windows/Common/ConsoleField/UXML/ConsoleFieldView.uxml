@@ -4,6 +4,6 @@
         <uie:ObjectField name="goField" style="max-width: 150px;" />
         <uie:ObjectField allow-scene-objects="false" focusable="true" picking-mode="Ignore" name="groupField" style="min-width: 75px; flex-grow: 1; flex-shrink: 1; max-width: 150px;" />
         <ui:TextField picking-mode="Ignore" name="message" auto-correction="false" multiline="false" readonly="true" hide-mobile-input="true" style="min-width: 50px; flex-grow: 1; max-width: 1000px;" />
-        <ui:Button text="Fix" display-tooltip-when-elided="true" name="fixBtn" style="flex-shrink: 1; flex-grow: 1; max-width: 5%;" />
+        <ui:Button text="Fix" display-tooltip-when-elided="true" name="fixBtn" style="flex-shrink: 1; flex-grow: 1; max-width: 7%; min-width: 7%;" />
     </ui:VisualElement>
 </ui:UXML>

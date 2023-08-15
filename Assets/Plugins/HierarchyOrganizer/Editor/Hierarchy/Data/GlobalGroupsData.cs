@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Data
 {
-	[CreateAssetMenu(fileName = "Global data", menuName = "HierarchyOrganizer/GlobalData")]
 	[Serializable]
 	public class GlobalGroupsData : ScriptableObject
 	{

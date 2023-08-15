@@ -4,7 +4,6 @@ using HierarchyOrganizer.Editor.Hierarchy.Data;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
-using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -26,14 +25,11 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 		
 		public event Action OnDestroy;
 
-		public static Stack<Tuple<IRestructure[], GameObject>> UndoStack;
-		public static Stack<Tuple<IRestructure[], GameObject>> RedoStack;
+		public static Stack<Tuple<IRestructure[], GameObject>> UndoStack = new();
+		public static Stack<Tuple<IRestructure[], GameObject>> RedoStack = new();
 
 		public void Init(VisualElement root)
 		{
-			UndoStack = new();
-			RedoStack = new();
-			
 			_root = root;
 			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
 
@@ -41,6 +37,18 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 
 			_el.Q<ToolbarButton>("undoBtn").clicked += Undo;
 			_el.Q<ToolbarButton>("redoBtn").clicked += Redo;
+
+			_el.Q<ToolbarButton>("refreshBtn").clicked += () =>
+			{
+				foreach (ConsoleFieldAdapter adapter in _fields)
+				{
+					adapter.DestroyWithoutNotification();
+				}
+				
+				_fields.Clear();
+				
+				ProcessCurrentScene();
+			};
 
 			_scrollView = _el.Q<ScrollView>();
 			
@@ -102,10 +110,14 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			{
 				foreach (IGroup group in globalGroups)
 				{
+					bool meets = true;
+					
 					foreach (ICondition condition in group.Conditions)
 					{
-						if (condition.IsMet(go)) AddAdapter(_scrollView, group, go);
+						if (!condition.IsMet(go)) meets = false;
 					}
+					
+					if (meets) AddAdapter(_scrollView, group, go);
 				}
 			}
 		}
@@ -115,7 +127,10 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			ConsoleFieldAdapter adapter = new ConsoleFieldAdapter();
 			adapter.Init(body, group, go);
 			_fields.Add(adapter);
+			adapter.OnDestroyThis += ProcessAdapterDeletion;
 		}
+
+		private void ProcessAdapterDeletion(ConsoleFieldAdapter obj) => _fields.Remove(obj);
 
 		private static GameObject[] GetAllObjectsOnScene(Scene scene)
 		{
