@@ -1,6 +1,5 @@
 ﻿using System;
 using HierarchyOrganizer.Editor.Hierarchy.Groups;
-using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
 using UnityEditor.UIElements;

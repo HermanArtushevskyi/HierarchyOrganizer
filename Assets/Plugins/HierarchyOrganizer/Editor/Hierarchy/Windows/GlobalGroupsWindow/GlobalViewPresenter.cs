@@ -4,6 +4,7 @@ using System.Linq;
 using HierarchyOrganizer.Editor.Hierarchy.Data;
 using HierarchyOrganizer.Editor.Hierarchy.Groups;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable;
+using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
 using UnityEngine;

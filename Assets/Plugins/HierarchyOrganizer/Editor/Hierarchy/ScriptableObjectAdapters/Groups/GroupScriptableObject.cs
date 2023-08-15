@@ -11,6 +11,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Groups
 	public class GroupScriptableObject : ScriptableObject, IGroup
 	{
 		[SerializeField] private string _name;
+		[SerializeField] [TextArea] private string _message;
 
 		[SerializeField] private SerializableInterface<IConditionFactory>[] _serializableConditions;
 		[SerializeField] private SerializableInterface<IRestructureFactory>[] _serializableRestructures;
@@ -44,6 +45,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Groups
 		}
 		
 		public string Name => _name;
+		public string Message => _message;
 
 		public List<ICondition> Conditions => _conditions.ToList();
 		public List<IRestructure> Restructures => _restructures.ToList();

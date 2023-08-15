@@ -1,4 +1,5 @@
 ﻿using System;
+using HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
@@ -41,6 +42,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 
 			root.Q<ToolbarButton>("globalBtn").clicked += () => SwitchPresenter(new GlobalViewPresenter());
 			root.Q<ToolbarButton>("localBtn").clicked += () => throw new NotImplementedException();
+			root.Q<ToolbarButton>("consoleBtn").clicked += () => SwitchPresenter(new ConsoleViewPresenter());
 			
 			SwitchPresenter(new GlobalViewPresenter());
 		}

@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: flex-start; align-items: stretch; align-self: center; width: 100%; margin-left: 10px; min-height: 25px;">
+        <ui:Label tabindex="-1" text="Issue" display-tooltip-when-elided="true" style="align-self: center;" />
+        <uie:ObjectField name="goField" style="max-width: 150px;" />
+        <uie:ObjectField allow-scene-objects="false" focusable="true" picking-mode="Ignore" name="groupField" style="min-width: 75px; flex-grow: 1; flex-shrink: 1; max-width: 150px;" />
+        <ui:TextField picking-mode="Ignore" name="message" auto-correction="false" multiline="false" readonly="true" hide-mobile-input="true" style="min-width: 50px; flex-grow: 1; max-width: 1000px;" />
+        <ui:Button text="Fix" display-tooltip-when-elided="true" name="fixBtn" style="flex-shrink: 1; flex-grow: 1; max-width: 5%;" />
+    </ui:VisualElement>
+</ui:UXML>

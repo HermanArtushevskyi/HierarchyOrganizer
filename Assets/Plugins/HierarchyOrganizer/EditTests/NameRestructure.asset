@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9d985ba9d74b2eb35e2bd7f65c0330, type: 3}
   m_Name: NameRestructure
   m_EditorClassIdentifier: 
-  _value: Btn
-  _mode: 1
+  _value: Camera
+  _mode: 0
