@@ -1,6 +1,7 @@
 ﻿using System;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow;
+using HierarchyOrganizer.Editor.Hierarchy.Windows.LocalWindow;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -37,11 +38,10 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 		{
 			rootVisualElement.Add(root);
 			_root = root;
-			
 			_body = root.Q("body");
 
 			root.Q<ToolbarButton>("globalBtn").clicked += () => SwitchPresenter(new GlobalViewPresenter());
-			root.Q<ToolbarButton>("localBtn").clicked += () => throw new NotImplementedException();
+			root.Q<ToolbarButton>("localBtn").clicked += () => SwitchPresenter(new LocalViewPresenter());
 			root.Q<ToolbarButton>("issueBtn").clicked += () => SwitchPresenter(new ConsoleViewPresenter());
 			
 			SwitchPresenter(new GlobalViewPresenter());
