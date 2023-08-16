@@ -24,7 +24,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField
 		private TextField _textArea;
 		private Button _fixBtn;
 
-		private IGroup _thisGroup;
+		private IGroup _group;
 		private GameObject _go;
 
 		public event Action OnDestroy;
@@ -46,7 +46,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField
 		{
 			Init(root);
 
-			_thisGroup = group;
+			_group = group;
 			_go = go;
 
 			_goField.objectType = typeof(GameObject);
@@ -62,11 +62,11 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField
 			_fixBtn.clicked += Fix;
 		}
 
-		private void Fix()
+		public void Fix()
 		{
 			List<IRestructure> undos = new();
 			
-			foreach (IRestructure restructure in _thisGroup.Restructures)
+			foreach (IRestructure restructure in _group.Restructures)
 			{
 				undos.Add(restructure);
 				restructure.Do(_go);
@@ -77,7 +77,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField
 
 		public object GetData()
 		{
-			return null;
+			return _group;
 		}
 
 		public void Destroy()

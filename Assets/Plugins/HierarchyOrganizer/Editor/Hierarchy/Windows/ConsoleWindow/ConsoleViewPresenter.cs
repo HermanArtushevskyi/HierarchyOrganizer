@@ -39,6 +39,8 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			_el.Q<ToolbarButton>("undoBtn").clicked += Undo;
 			_el.Q<ToolbarButton>("redoBtn").clicked += Redo;
 
+			_el.Q<ToolbarButton>("fixBtn").clicked += FixAll;
+			
 			_el.Q<ToolbarButton>("refreshBtn").clicked += () =>
 			{
 				foreach (ConsoleFieldAdapter adapter in _fields)
@@ -88,6 +90,14 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			}
 
 			UndoStack.Push(new Tuple<IRestructure[], GameObject>(undo.ToArray(), redo.Item2));
+		}
+
+		private void FixAll()
+		{
+			foreach (ConsoleFieldAdapter adapter in _fields)
+			{
+				adapter.Fix();
+			}
 		}
 
 		public void Destroy()
