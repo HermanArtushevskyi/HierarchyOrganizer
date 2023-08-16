@@ -5,13 +5,13 @@ namespace HierarchyOrganizer.Editor.Filters
 {
     public sealed class FilterComponent : FilterBase
     {
-        private readonly Predicate<string> _componentFilter;
+        
 
-        private string _value;
+        private string _text;
 
-        public FilterComponent(string value = null, Mode mode = Mode.Contains)
+        public FilterComponent(string text = null, Mode mode = Mode.Contains)
         {
-            _value = value;
+            _text = text;
 
             switch (mode)
             {
@@ -36,7 +36,7 @@ namespace HierarchyOrganizer.Editor.Filters
 
             foreach (Component component in components)
             {
-                if (component.GetType().Name == _value)
+                if (component.GetType().Name == _text)
                     return true;
             }
 
