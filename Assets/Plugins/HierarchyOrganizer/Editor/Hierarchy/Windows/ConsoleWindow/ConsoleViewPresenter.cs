@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HierarchyOrganizer.Editor.Common;
 using HierarchyOrganizer.Editor.Hierarchy.Data;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
@@ -97,7 +98,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 
 		private void ProcessCurrentScene()
 		{
-			GameObject[] allObjects = GetAllObjectsOnScene(SceneManager.GetActiveScene());
+			GameObject[] allObjects = HierarchySceneUtils.GetAllObjectsOnScene(SceneManager.GetActiveScene());
 
 			ProcessGlobalGroups(allObjects);
 		}
@@ -110,14 +111,8 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			{
 				foreach (IGroup group in globalGroups)
 				{
-					bool meets = true;
-					
-					foreach (ICondition condition in group.Conditions)
-					{
-						if (!condition.IsMet(go)) meets = false;
-					}
-					
-					if (meets) AddAdapter(_scrollView, group, go);
+					if (GlobalGroupsData.ObjectMeetsRequirements(go, group))
+						AddAdapter(_scrollView, group, go);
 				}
 			}
 		}
@@ -131,27 +126,5 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 		}
 
 		private void ProcessAdapterDeletion(ConsoleFieldAdapter obj) => _fields.Remove(obj);
-
-		private static GameObject[] GetAllObjectsOnScene(Scene scene)
-		{
-			List<GameObject> roots = new List<GameObject>(scene.rootCount);
-
-			scene.GetRootGameObjects(roots);
-
-			List<GameObject> allObjects = new();
-
-			foreach (GameObject root in roots)
-			{
-				allObjects.Add(root);
-				Transform[] children = root.GetComponentsInChildren<Transform>();
-				foreach (Transform child in children)
-				{
-					if (!roots.Contains(child.gameObject)) 
-						allObjects.Add(child.gameObject);
-				}
-			}
-
-			return allObjects.ToArray();
-		}
 	}
 }

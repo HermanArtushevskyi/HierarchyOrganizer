@@ -12,9 +12,9 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 	public class GlobalGroupsData : ScriptableObject
 	{
 		public const string PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/GlobalData.asset";
-		
+
 		[SerializeField] public string[] GlobalGroupsGUID;
-		
+
 		public void SetGlobalGroups(string[] groupsGUID)
 		{
 			GlobalGroupsGUID = groupsGUID;
@@ -22,8 +22,9 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 
 		public static IGroup[] GetAllGlobalGroups()
 		{
-			string[] globalGroups = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GlobalGroupsData.PATH).GlobalGroupsGUID;
-			
+			string[] globalGroups =
+				AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(PATH).GlobalGroupsGUID;
+
 			string[] allGroupObjects = AssetDatabase.FindAssets("t:GroupScriptableObject");
 
 			List<IGroup> res = new List<IGroup>();
@@ -38,6 +39,17 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 			}
 
 			return res.ToArray();
+		}
+
+		public static bool ObjectMeetsRequirements(GameObject obj, IGroup group)
+		{
+			bool meets = true;
+			
+			foreach (ICondition condition in group.Conditions)
+				if (!condition.IsMet(obj))
+					meets = false;
+
+			return meets;
 		}
 	}
 }
