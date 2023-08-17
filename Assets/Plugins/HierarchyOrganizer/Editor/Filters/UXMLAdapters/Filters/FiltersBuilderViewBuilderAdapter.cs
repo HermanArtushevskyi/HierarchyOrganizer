@@ -25,9 +25,10 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
-		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+		private List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+      //  private List<ISceneFilterElementAdapter> _savedFilters = new List<ISceneFilterElementAdapter>();
 
-		public FiltersBuilderViewBuilderAdapter()
+        public FiltersBuilderViewBuilderAdapter()
 		{
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
@@ -53,7 +54,12 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		public bool RequestUserData(out object userData)
 		{
 			userData = _addedFilters;
-			return true;
+			//_savedFilters = _addedFilters;
+            return true;
+		}
+		public void SaveUserData()
+		{
+	//		_addedFilters = _savedFilters;
 		}
 
 		public void Destroy()
@@ -61,7 +67,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			DestroyWithoutNotification();
 			OnDestroy?.Invoke(this);
 		}
-
+		
 		public void DestroyWithoutNotification()
 		{
 			_root.Clear();
