@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using HierarchyOrganizer.Editor.Hierarchy.Groups;
+using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;

@@ -6,10 +6,8 @@ namespace HierarchyOrganizer.Editor
 	public static class HierarchySettings
 	{
 		[VariableAlias("Use specific settings for each scene")]
-		public static bool SpecificSettingsForEachScene = false;
+		public static bool SpecificSettingsForEachScene;
 		[VariableAlias("Use nested type of hierarchy")]
-		public static bool NestedHierarchy = true;
-
-		public static Action SettingsChanged;
+		public static bool NestedHierarchy;
 	}
 }

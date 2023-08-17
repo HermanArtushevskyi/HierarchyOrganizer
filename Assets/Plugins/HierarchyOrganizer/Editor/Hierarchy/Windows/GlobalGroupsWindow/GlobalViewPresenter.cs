@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HierarchyOrganizer.Editor.Hierarchy.Data;
-using HierarchyOrganizer.Editor.Hierarchy.Groups;
+using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
@@ -70,10 +70,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 					_groupsGUID.Add(guid);
 				}
 
-				_globalService.SetGlobalGroups(_groupsGUID.ToArray());
-				EditorUtility.SetDirty(_globalService);
-				AssetDatabase.SaveAssetIfDirty(_globalService);
-				AssetDatabase.Refresh();
+				GlobalGroupsData.SetGlobalGroups(_groupsGUID.ToArray());
 			};
 		}
 

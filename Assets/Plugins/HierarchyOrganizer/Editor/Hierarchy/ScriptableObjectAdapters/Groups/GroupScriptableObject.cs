@@ -5,7 +5,7 @@ using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Factories;
 using TNRD;
 using UnityEngine;
 
-namespace HierarchyOrganizer.Editor.Hierarchy.Groups
+namespace HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups
 {
 	[CreateAssetMenu(fileName = "Group", menuName = "HierarchyOrganizer/Group", order = -1)]
 	public class GroupScriptableObject : ScriptableObject, IGroup

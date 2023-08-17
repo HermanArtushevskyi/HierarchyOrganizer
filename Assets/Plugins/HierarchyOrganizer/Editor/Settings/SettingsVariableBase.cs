@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using HierarchyOrganizer.Editor.Interfaces.EditorView;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Settings
@@ -21,12 +22,8 @@ namespace HierarchyOrganizer.Editor.Settings
 		public abstract void SaveValue();
 
 		protected abstract void AddUxml(ScrollView list);
-		
-		protected object GetCurrentVariable()
-		{
-			FieldInfo field = typeof(HierarchySettings).GetField(VariableName);
-			return field.GetValue(null);
-		}
+
+		protected abstract object GetCurrentVariable();
 
 		protected void ApplyAlias(Label label)
 		{

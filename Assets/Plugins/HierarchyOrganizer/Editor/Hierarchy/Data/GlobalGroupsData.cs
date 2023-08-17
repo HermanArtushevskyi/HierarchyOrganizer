@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HierarchyOrganizer.Editor.Hierarchy.Groups;
+using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using UnityEditor;
 using UnityEngine;
@@ -15,9 +15,17 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 
 		[SerializeField] public string[] GlobalGroupsGUID;
 
-		public void SetGlobalGroups(string[] groupsGUID)
+		public static void SetGlobalGroups(string[] groupsGUID)
 		{
-			GlobalGroupsGUID = groupsGUID;
+			GlobalGroupsData data = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(PATH);
+
+			if (data.GlobalGroupsGUID == null) data.GlobalGroupsGUID = Array.Empty<string>();
+
+			data.GlobalGroupsGUID = groupsGUID;
+			
+			EditorUtility.SetDirty(data);
+			AssetDatabase.SaveAssetIfDirty(data);
+			AssetDatabase.Refresh();
 		}
 
 		public static IGroup[] GetAllGlobalGroups()

@@ -79,12 +79,6 @@ namespace HierarchyOrganizer.Editor.Settings
 				return true;
 			}
 
-			if (field.FieldType == typeof(Action))
-			{
-				variable = null;
-				return false;
-			}
-
 			Debug.LogWarning($"HierarchySettings: Type {field.FieldType} is not supported");
 
 			variable = null;

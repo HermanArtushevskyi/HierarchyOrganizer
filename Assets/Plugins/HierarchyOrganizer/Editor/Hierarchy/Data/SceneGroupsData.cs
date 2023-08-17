@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HierarchyOrganizer.Editor.Common.SerializedTuple;
-using HierarchyOrganizer.Editor.Hierarchy.Groups;
+using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using UnityEditor;
 using UnityEngine;
@@ -18,7 +18,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 		public static void SetSceneGroups(string sceneName,string[] guids)
 		{
 			SceneGroupsData loadedData = AssetDatabase.LoadAssetAtPath<SceneGroupsData>(PATH);
-
 			
 			if (loadedData.SceneGroups == null) loadedData.SceneGroups = Array.Empty<SceneGroupsGUIDTuple>();
 

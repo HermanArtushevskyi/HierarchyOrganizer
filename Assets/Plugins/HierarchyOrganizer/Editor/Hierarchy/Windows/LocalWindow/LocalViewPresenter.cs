@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HierarchyOrganizer.Editor.Hierarchy.Data;
-using HierarchyOrganizer.Editor.Hierarchy.Groups;
+using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
