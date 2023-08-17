@@ -25,19 +25,31 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
-		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+		private List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+        private List<ISceneFilterElementAdapter> _savedFilters = new List<ISceneFilterElementAdapter>();
 
-		public FiltersBuilderViewBuilderAdapter()
+        public FiltersBuilderViewBuilderAdapter()
 		{
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
-				{AvailableFilter.Tag, AddTagFilter}
-			};
+				{AvailableFilter.Tag, AddTagFilter},
+<<<<<<< HEAD
+                {AvailableFilter.Component, AddComponentFilter},
+=======
+
+                {AvailableFilter.Component, AddComponentFilter},
+
+>>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
+                {AvailableFilter.Name, AddNameFilter}
+
+            };
 		}
 
 		public void Init(VisualElement root)
 		{
 			Init(root, null);
+// SaveUserData();
+
 		}
 
 		public void Init(VisualElement root, object data)
@@ -50,15 +62,16 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		public bool RequestUserData(out object userData)
 		{
 			userData = _addedFilters;
-			return true;
+            return true;
 		}
+		
 
 		public void Destroy()
 		{
 			DestroyWithoutNotification();
 			OnDestroy?.Invoke(this);
 		}
-
+		
 		public void DestroyWithoutNotification()
 		{
 			_root.Clear();
