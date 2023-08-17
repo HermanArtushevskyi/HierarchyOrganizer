@@ -1,16 +1,10 @@
 ﻿using System;
-<<<<<<< HEAD
-using HierarchyOrganizer.Editor.Interfaces.Filters;
-using UnityEditor;
-using UnityEngine;
-=======
 using System.Collections.Generic;
 using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
->>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
@@ -22,11 +16,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
         private VisualElement _root;
         private TemplateContainer _el;
         private EnumField _modeField;
-<<<<<<< HEAD
-        private TextField _textField;
-=======
+
         private DropdownField _dropField;
->>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
         private Button _deleteButton;
 
         public event Action<ComponentFilterElementAdapter> OnDelete = null;
@@ -39,30 +30,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
             root.Add(_el);
 
             _modeField = _el.Q<EnumField>();
-<<<<<<< HEAD
-            _textField = _el.Q<TextField>();
-            _el.Q<Button>().clicked += Destroy;
 
-            _modeField.Init(FilterComponent.Mode.Is);
-            _textField.value = "";
-        }
-        
-
-
-       public ISceneFilter GetFilter()
-{
-    var mode = (FilterComponent.Mode)_modeField.value;
-    var filterValue = _textField.value;
-    return new FilterComponent(filterValue, mode);
-}
-
-        
-        public bool ValidateGameObject(GameObject go)
-        {
-            return new FilterComponent
-                (_textField.value, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
-        }
-=======
             _dropField = _el.Q<DropdownField>();
             _el.Q<Button>().clicked += Destroy;
 
@@ -84,7 +52,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
             return new FilterComponent(_dropField.text, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
         }
 
->>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
+
         public void Destroy()
         {
             DestroyWithoutNotification();
@@ -92,8 +60,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
         }
 
         public void DestroyWithoutNotification() => _root.Remove(_el);
-<<<<<<< HEAD
-=======
+
 
       
         private void ComponentFilterDropdown()
@@ -135,6 +102,6 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
             }
 
         }
->>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
+
     }
 }

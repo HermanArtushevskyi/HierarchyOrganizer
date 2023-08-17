@@ -33,13 +33,9 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
 				{AvailableFilter.Tag, AddTagFilter},
-<<<<<<< HEAD
-                {AvailableFilter.Component, AddComponentFilter},
-=======
 
                 {AvailableFilter.Component, AddComponentFilter},
 
->>>>>>> 8e98faf4c32fc8385df620cce116a1f0141358e8
                 {AvailableFilter.Name, AddNameFilter}
 
             };
