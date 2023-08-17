@@ -1,9 +1,7 @@
 ﻿using System;
-using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
-using UnityEditor;
 using UnityEngine;
 
-namespace HierarchyOrganizer.Editor.Common
+namespace HierarchyOrganizer.Editor.Common.SerializedTuple
 {
 	[Serializable]
 	public abstract class SerializedTuple<T1, T2> : Tuple<T1, T2>
@@ -19,13 +17,10 @@ namespace HierarchyOrganizer.Editor.Common
 		}
 		
 		public new T1 Item1 => value1;
-		public new T2 Item2 => value2;
-	}
-
-	public class SceneGroupsGUIDTuple : SerializedTuple<SceneAsset, string>
-	{
-		public SceneGroupsGUIDTuple(SceneAsset item1, string item2) : base(item1, item2)
+		public new T2 Item2
 		{
+			get => value2;
+			set => value2 = value;
 		}
 	}
 }

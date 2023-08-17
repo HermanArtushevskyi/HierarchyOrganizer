@@ -57,6 +57,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 				_groupAdapters.Clear();
 			};
 
+			
 			_saveBtn.clicked += () =>
 			{
 				List<string> _groupsGUID = new();

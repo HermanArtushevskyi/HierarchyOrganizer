@@ -111,6 +111,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			GameObject[] allObjects = HierarchySceneUtils.GetAllObjectsOnScene(SceneManager.GetActiveScene());
 
 			ProcessGlobalGroups(allObjects);
+			ProcessCurrentSceneGroups(allObjects, SceneManager.GetActiveScene().name);
 		}
 
 		private void ProcessGlobalGroups(GameObject[] gameObjects)
@@ -120,6 +121,20 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 			foreach (GameObject go in gameObjects)
 			{
 				foreach (IGroup group in globalGroups)
+				{
+					if (GlobalGroupsData.ObjectMeetsRequirements(go, group))
+						AddAdapter(_scrollView, group, go);
+				}
+			}
+		}
+
+		private void ProcessCurrentSceneGroups(GameObject[] gameObjects, string sceneName)
+		{
+			IGroup[] sceneGroups = SceneGroupsData.GetSceneGroups(sceneName);
+			
+			foreach (GameObject go in gameObjects)
+			{
+				foreach (IGroup group in sceneGroups)
 				{
 					if (GlobalGroupsData.ObjectMeetsRequirements(go, group))
 						AddAdapter(_scrollView, group, go);
