@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneGroups:
   - value1: SampleScene
-    value2:
-    - 565dcdac2ba8cfb45be6ba39c33c3ba9
+    value2: []
