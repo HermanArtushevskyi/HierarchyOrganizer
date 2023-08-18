@@ -9,13 +9,14 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.ConsoleField
 {
 	public class ConsoleFieldAdapter : IViewAdapter
 	{
-		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/Common/ConsoleField/UXML/ConsoleFieldView.uxml";
+		private string UXML_PATH = SettingsProvider.GetPluginPath() +
+		                                  "Editor/Hierarchy/Windows/Common/ConsoleField/UXML/ConsoleFieldView.uxml";
 
 		private VisualElement _root;
 		private TemplateContainer _el;

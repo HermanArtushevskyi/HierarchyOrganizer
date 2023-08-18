@@ -10,13 +10,14 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.ConsoleWindow
 {
 	public class ConsoleViewPresenter : IViewPresenter
 	{
-		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/ConsoleWindow/UXML/ConsoleWindowView.uxml";
+		private string UXML_PATH = SettingsProvider.GetPluginPath() + 
+		                                  "Editor/Hierarchy/Windows/ConsoleWindow/UXML/ConsoleWindowView.uxml";
 
 		private VisualElement _root;
 		private TemplateContainer _el;

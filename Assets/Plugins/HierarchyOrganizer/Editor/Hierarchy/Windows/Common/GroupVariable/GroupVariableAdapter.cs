@@ -4,13 +4,14 @@ using HierarchyOrganizer.Editor.Interfaces.Hierarchy.Windows;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.Common.GroupVariable
 {
 	public class GroupVariableAdapter : IViewAdapter
 	{
-		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/Common/GroupVariable/UXML/GroupVariableView.uxml";
+		private string UXML_PATH = SettingsProvider.GetPluginPath() +
+		                                  "Editor/Hierarchy/Windows/Common/GroupVariable/UXML/GroupVariableView.uxml";
 
 		private VisualElement _root;
 		private TemplateContainer _el;

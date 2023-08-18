@@ -5,19 +5,18 @@ using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using UnityEditor;
 using UnityEngine;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Data
 {
 	[Serializable]
 	public class GlobalGroupsData : ScriptableObject
 	{
-		public const string PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/GlobalData.asset";
-
 		[SerializeField] public string[] GlobalGroupsGUID;
 
 		public static void SetGlobalGroups(string[] groupsGUID)
 		{
-			GlobalGroupsData data = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(PATH);
+			GlobalGroupsData data = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GetPath());
 
 			if (data.GlobalGroupsGUID == null) data.GlobalGroupsGUID = Array.Empty<string>();
 
@@ -31,7 +30,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 		public static IGroup[] GetAllGlobalGroups()
 		{
 			string[] globalGroups =
-				AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(PATH).GlobalGroupsGUID;
+				AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GetPath()).GlobalGroupsGUID;
 
 			string[] allGroupObjects = AssetDatabase.FindAssets("t:GroupScriptableObject");
 
@@ -59,5 +58,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 
 			return meets;
 		}
+
+		public static string GetPath() => SettingsProvider.GetPluginPath() + "Editor/Hierarchy/GlobalData.asset";
 	}
 }

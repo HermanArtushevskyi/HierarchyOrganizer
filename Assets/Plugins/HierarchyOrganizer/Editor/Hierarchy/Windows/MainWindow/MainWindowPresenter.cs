@@ -7,13 +7,12 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 {
 	public class MainWindowPresenter : EditorWindow, IViewPresenter
 	{
-		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/MainWindow/UXML/MainWindowView.uxml";
-
 		private VisualElement _root = null;
 		private VisualElement _body = null;
 
@@ -29,7 +28,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 
 		private void CreateGUI()
 		{
-			Init(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate());
+			Init(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(GetPath()).Instantiate());
 		}
 
 		public event Action OnDestroy;
@@ -60,5 +59,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.MainWindow
 		{
 			OnDestroy?.Invoke();
 		}
+
+		private string GetPath() => SettingsProvider.GetPluginPath() + "Editor/Hierarchy/Windows/MainWindow/UXML/MainWindowView.uxml";
 	}
 }

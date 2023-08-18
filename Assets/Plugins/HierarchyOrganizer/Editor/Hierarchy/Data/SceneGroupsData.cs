@@ -6,18 +6,17 @@ using HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Groups;
 using HierarchyOrganizer.Editor.Interfaces.Hierarchy;
 using UnityEditor;
 using UnityEngine;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Data
 {
 	public class SceneGroupsData : ScriptableObject
 	{
-		private const string PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/SceneData.asset";
-		
 		[SerializeField] public SceneGroupsGUIDTuple[] SceneGroups;
 		
 		public static void SetSceneGroups(string sceneName,string[] guids)
 		{
-			SceneGroupsData loadedData = AssetDatabase.LoadAssetAtPath<SceneGroupsData>(PATH);
+			SceneGroupsData loadedData = AssetDatabase.LoadAssetAtPath<SceneGroupsData>(GetPath());
 			
 			if (loadedData.SceneGroups == null) loadedData.SceneGroups = Array.Empty<SceneGroupsGUIDTuple>();
 
@@ -46,7 +45,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 		public static IGroup[] GetSceneGroups(string sceneName)
 		{
 			SceneGroupsGUIDTuple[] allSceneGroups =
-				AssetDatabase.LoadAssetAtPath<SceneGroupsData>(PATH).SceneGroups;
+				AssetDatabase.LoadAssetAtPath<SceneGroupsData>(GetPath()).SceneGroups;
 
 			if (allSceneGroups == null) return new IGroup[]{};
 
@@ -72,5 +71,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Data
 
 			return res.ToArray();
 		}
+
+		public static string GetPath() => SettingsProvider.GetPluginPath() + "Editor/Hierarchy/SceneData.asset";
 	}
 }
