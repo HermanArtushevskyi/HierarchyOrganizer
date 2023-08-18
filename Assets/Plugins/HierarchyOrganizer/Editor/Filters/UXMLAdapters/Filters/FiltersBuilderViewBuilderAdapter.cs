@@ -25,8 +25,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
-		private List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
-        private List<ISceneFilterElementAdapter> _savedFilters = new List<ISceneFilterElementAdapter>();
+		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
+       
 
         public FiltersBuilderViewBuilderAdapter()
 		{
@@ -44,7 +44,6 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		public void Init(VisualElement root)
 		{
 			Init(root, null);
-// SaveUserData();
 
 		}
 
@@ -54,10 +53,11 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			AddUXML(root);
 			RegisterButtons();
 		}
-
+	
 		public bool RequestUserData(out object userData)
 		{
 			userData = _addedFilters;
+			
             return true;
 		}
 		
