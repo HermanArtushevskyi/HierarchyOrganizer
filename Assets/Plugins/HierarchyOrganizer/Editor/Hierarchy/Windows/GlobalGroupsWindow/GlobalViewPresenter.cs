@@ -10,12 +10,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 {
 	public class GlobalViewPresenter : IViewPresenter
 	{
-		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/GlobalGroupsWindow/UXML/GlobalView.uxml";
+		private string UXML_PATH = SettingsProvider.GetPluginPath() +
+		                                  "Editor/Hierarchy/Windows/GlobalGroupsWindow/UXML/GlobalView.uxml";
 		
 		private VisualElement _root;
 		private ScrollView _scrollView;
@@ -84,7 +86,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.GlobalGroupsWindow
 
 		private void LoadData()
 		{
-			_globalService = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GlobalGroupsData.PATH);
+			_globalService = AssetDatabase.LoadAssetAtPath<GlobalGroupsData>(GlobalGroupsData.GetPath());
 
 			if (_globalService == null)
 			{

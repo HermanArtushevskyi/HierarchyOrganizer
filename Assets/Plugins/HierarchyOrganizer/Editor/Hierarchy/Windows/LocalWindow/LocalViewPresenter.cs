@@ -9,13 +9,14 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.Windows.LocalWindow
 {
 	public class LocalViewPresenter : IViewPresenter
 	{
-		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Hierarchy/Windows/LocalWindow/UXML/LocalWindowView.uxml";
+		private string UXML_PATH = SettingsProvider.GetPluginPath() + 
+		                                  "Editor/Hierarchy/Windows/LocalWindow/UXML/LocalWindowView.uxml";
 
 		private TemplateContainer _el;
 		private VisualElement _root;
