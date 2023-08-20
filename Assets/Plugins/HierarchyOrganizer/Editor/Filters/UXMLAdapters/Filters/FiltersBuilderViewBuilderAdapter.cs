@@ -21,9 +21,9 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private ScrollView _scrollView = null;
 		private Button _addButton = null;
 		private Button _clearButton = null;
-		#endregion
+        #endregion
 
-		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
+        public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
 		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
        
