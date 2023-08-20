@@ -19,6 +19,7 @@ namespace HierarchyOrganizer.Editor.Common
 				foreach (Type type in allTypes)
 				{
 					if (!type.IsClass) continue;
+					if (type.IsAbstract) continue;
 					if (type.IsSubclassOf(typeof(Component)))
 					{
 						list.Add(type);
@@ -39,6 +40,7 @@ namespace HierarchyOrganizer.Editor.Common
 				foreach (Type type in allTypes)
 				{
 					if (!type.IsClass) continue;
+					if (type.IsAbstract) continue;
 					if (type.IsSubclassOf(typeof(Component)))
 					{
 						list.Add(type.Name);
@@ -60,6 +62,7 @@ namespace HierarchyOrganizer.Editor.Common
 				foreach (Type type in allTypes)
 				{
 					if (!type.IsClass) continue;
+					if (type.IsAbstract) continue;
 					if (type.IsSubclassOf(typeof(Component)) && type.Name == name)
 					{
 						resType = type;
