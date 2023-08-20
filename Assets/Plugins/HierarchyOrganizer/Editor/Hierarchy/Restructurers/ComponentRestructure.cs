@@ -44,7 +44,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Restructurers
 
 		private void Remove(GameObject go)
 		{
-			GameObject.Destroy(go.GetComponent(_componentType));
+			GameObject.DestroyImmediate(go.GetComponent(_componentType));
 		}
 	}
 }
