@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c2f342422e4b1bb1b4dbfb79c91c81, type: 3}
-  m_Name: SceneData
+  m_Script: {fileID: 11500000, guid: dac8e4cbfdf541aba9f2de4a3f8521ff, type: 3}
+  m_Name: StaticRestructure
   m_EditorClassIdentifier: 
-  SceneGroups:
-  - value1: SampleScene
-    value2: []
+  Value: 0
+  Mode: 1

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c2f342422e4b1bb1b4dbfb79c91c81, type: 3}
-  m_Name: SceneData
+  m_Script: {fileID: 11500000, guid: ebb67f7ba97f4ead987eff60595e69ab, type: 3}
+  m_Name: Component
   m_EditorClassIdentifier: 
-  SceneGroups:
-  - value1: SampleScene
-    value2: []
+  _reference:
+    MonoBehaviourName: Camera
+  _mode: 0
