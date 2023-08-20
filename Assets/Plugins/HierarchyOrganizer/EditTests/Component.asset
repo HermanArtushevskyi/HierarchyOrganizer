@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb67f7ba97f4ead987eff60595e69ab, type: 3}
   m_Name: Component
   m_EditorClassIdentifier: 
-  _script: {fileID: 0}
+  _reference:
+    MonoBehaviourName: Camera
   _mode: 0
