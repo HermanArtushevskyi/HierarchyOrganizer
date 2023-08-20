@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace HierarchyOrganizer.Editor.Hierarchy.ScriptableObjectAdapters.Restructures
 {
+	[CreateAssetMenu(fileName = "StaticRestructure", menuName = "HierarchyOrganizer/Restructures/Static")]
 	public class StaticStatusRestructureAdapter : ScriptableObject, IRestructureFactory
 	{
 		[SerializeField] private bool Value;
