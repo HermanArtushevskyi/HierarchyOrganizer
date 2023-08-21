@@ -34,7 +34,7 @@ namespace HierarchyOrganizer.Editor.Settings
 			if (VariableAlias != null) label.text = VariableAlias;
 		}
 
-		public static ISettingsVariable ProcessVariable(Type type, string name)
+		public static ISettingsVariable ProcessVariable(FieldInfo type, string name)
 		{
 			ISettingsVariable result;
 			string alias = null;
@@ -43,10 +43,10 @@ namespace HierarchyOrganizer.Editor.Settings
 
 			if (aliasAttribute != null) alias = aliasAttribute.Alias;
 			
-			if (type == typeof(bool))
+			if (type.FieldType == typeof(bool))
 				return new SettingsVariableBool(name, alias);
 
-			if (type == typeof(string))
+			if (type.FieldType == typeof(string))
 				return new SettingsVariableString(name, alias);
 
 			Debug.LogWarning($"HierarchySettings: Type {type} is not supported");

@@ -85,6 +85,9 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Windows.LocalWindow
 		private void RefreshGroups(SceneAsset sceneAsset)
 		{
 			_scrollView.Clear();
+			
+			if (sceneAsset == null) return;
+			
 			IGroup[] groups = SceneGroupsData.GetSceneGroups(sceneAsset.name);
 
 			foreach (IGroup group in groups) AddAdapter(_scrollView, group);

@@ -70,7 +70,7 @@ namespace HierarchyOrganizer.Editor.Settings
 
 		private ISettingsVariable ProcessVariable(FieldInfo field)
 		{
-			return SettingsVariableBase.ProcessVariable(field.FieldType, field.Name);
+			return SettingsVariableBase.ProcessVariable(field, field.Name);
 		}
 	}
 }
