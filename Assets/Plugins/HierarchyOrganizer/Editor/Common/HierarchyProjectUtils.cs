@@ -47,7 +47,7 @@ namespace HierarchyOrganizer.Editor.Common
 		public static string[] GetAllMonoBehavioursNamesInProjectAsync()
 		{
 			if (!NamesDirty) return _namesCache;
-			
+
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
 			ConcurrentBag<string> list = new ConcurrentBag<string>();

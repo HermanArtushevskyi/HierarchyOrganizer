@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249f18f0f631407c8eb424d2a8e31ae8, type: 3}
   m_Name: TagCondition
   m_EditorClassIdentifier: 
-  Value: MainCamera
+  Value:
+    Value: MainCamera
   Mode: 0

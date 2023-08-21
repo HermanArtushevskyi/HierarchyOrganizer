@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd539008ab344703a0ad7ea71ae88591, type: 3}
-  m_Name: NameCondition
+  m_Script: {fileID: 11500000, guid: 0a7abd02f9de452e8ce3408b18f508bc, type: 3}
+  m_Name: Static condition
   m_EditorClassIdentifier: 
-  Value: Camera
-  Mode: 2
+  _mode: 0
+  _value: 1
