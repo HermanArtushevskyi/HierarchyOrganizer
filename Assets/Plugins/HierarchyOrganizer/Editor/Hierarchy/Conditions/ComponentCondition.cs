@@ -14,7 +14,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 		{
 			Has,
 			Lacks,
-			Prototype
+			//Prototype
 		}
 
 		public ComponentCondition(Mode mode, Type type)
@@ -27,18 +27,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 				Mode.Has => HasPredicate,
 				
 				Mode.Lacks => LacksPredicate,
-			
-				Mode.Prototype => (go) =>
-				{
-					Component script;
-					if (go.TryGetComponent(_scriptType, out script))
-					{
-						return PrototypePredicate(script);
-					}
-
-					return false;
-				},
-				_ => Condition
 			};
 		}
 

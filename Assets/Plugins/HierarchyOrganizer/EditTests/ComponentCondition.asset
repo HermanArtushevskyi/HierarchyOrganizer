@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec93fb089c64338a2b424e33bef1b75, type: 3}
   m_Name: ComponentCondition
   m_EditorClassIdentifier: 
-  Value: {fileID: 0}
+  Value:
+    MonoBehaviourName: Camera
   Mode: 0
