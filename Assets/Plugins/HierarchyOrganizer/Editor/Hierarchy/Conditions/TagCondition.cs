@@ -5,7 +5,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 {
 	public class TagCondition : ConditionBase
 	{
-		private readonly Mode _mode;
 		private readonly string _value;
 
 		private Predicate<string> _tagPredicate;
@@ -14,17 +13,16 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 		{
 			Is,
 			Contains,
-			Exclude
+			Except
 		}
 
 		public TagCondition(Mode mode, string value)
 		{
-			_mode = mode;
 			_value = value;
 
 			if (mode == Mode.Is) _tagPredicate = IsPredicate;
 			else if (mode == Mode.Contains) _tagPredicate = ContainsPredicate;
-			else if (mode == Mode.Exclude) _tagPredicate = ExcludePredicate;
+			else if (mode == Mode.Except) _tagPredicate = ExcludePredicate;
 			
 			Condition = (go) => _tagPredicate.Invoke(go.tag);
 		}

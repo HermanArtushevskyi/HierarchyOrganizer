@@ -7,7 +7,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 	{
 		// TODO: Complete prototype predicate
 		
-		private readonly Mode _mode;
 		private readonly Type _scriptType;
 
 		public enum Mode
@@ -19,7 +18,6 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 
 		public ComponentCondition(Mode mode, Type type)
 		{
-			_mode = mode;
 			_scriptType = type;
 
 			Condition = mode switch
