@@ -6,5 +6,10 @@ namespace HierarchyOrganizer.Editor.Common
     public class HierarchyNode
     {
         public string Name;
+
+        public HierarchyNode(string name)
+        {
+            Name = name;
+        }
     }
 }
