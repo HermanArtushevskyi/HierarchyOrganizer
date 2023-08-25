@@ -16,12 +16,12 @@ MonoBehaviour:
   _message: Set name to "Camera" for objects with MainCamera tag
   _serializableConditions:
   - mode: 0
-    unityReference: {fileID: 11400000, guid: 7a939b732d399d84cacdf0324a3407d8, type: 2}
+    unityReference: {fileID: 11400000, guid: bc5a9de03fbf76c478511518cea39f9f, type: 2}
     rawReference:
       rid: -2
   _serializableRestructures:
   - mode: 0
-    unityReference: {fileID: 11400000, guid: f0a314864420ea242834e8adc617b352, type: 2}
+    unityReference: {fileID: 11400000, guid: b6753546ac86d884a9928652ed35b4ba, type: 2}
     rawReference:
       rid: -2
   references:
