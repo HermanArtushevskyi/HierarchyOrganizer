@@ -15,8 +15,7 @@ namespace HierarchyOrganizer.Editor.Hierarchy.Conditions
 
         public enum Mode
         {
-            Is,
-            
+            Is
         }
 
         private bool IsPredicate(GameObject go) => go.activeInHierarchy == _value;
