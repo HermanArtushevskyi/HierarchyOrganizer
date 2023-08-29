@@ -28,7 +28,7 @@ namespace HierarchyOrganizer.Editor.Filters
 
 			Filter = PredicateFunc;
 		}
-
+		
 		public enum Mode
 		{
 			Is,

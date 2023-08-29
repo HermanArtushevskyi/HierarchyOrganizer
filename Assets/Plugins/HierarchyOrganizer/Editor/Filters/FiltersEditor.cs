@@ -14,8 +14,11 @@ namespace HierarchyOrganizer.Editor.Filters
 		private IViewBuilderAdapter _currentBuilderAdapter;
 
 		private object _userData;
-		
-		[MenuItem("LonelyStudio/HierarchyOrganizer/Find", priority = 1)]
+        private object _savedData;
+
+
+
+        [MenuItem("LonelyStudio/HierarchyOrganizer/Find", priority = 1)]
 		private static void ShowWindow()
 		{
 			var window = GetWindow<FiltersEditor>();
@@ -29,19 +32,29 @@ namespace HierarchyOrganizer.Editor.Filters
 			_body = rootVisualElement.Q<VisualElement>("Body");
 
 			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
-			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(new ResultsBuilderViewAdapter());
+			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(new ResultsBuilderViewAdapter()); 
 			
-			_currentBuilderAdapter = SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
+			_currentBuilderAdapter = SwitchAdapter(new FiltersBuilderViewBuilderAdapter()); 
 		}
 
-		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter)
+		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter) 
 		{
 			if (_currentBuilderAdapter == builderAdapter) return _currentBuilderAdapter;
-			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)) _userData = userData;
-			_currentBuilderAdapter?.Destroy();
+			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)&& _currentBuilderAdapter.SaveUserData(out var savedData))
+			{
+				_userData = userData;
+				_savedData = savedData;
+			}
+			
+			
+				
+			
+
+            _currentBuilderAdapter?.Destroy();
 			
 			IViewBuilderAdapter viewBuilder = builderAdapter;
-			viewBuilder.Init(_body, _userData);
+	
+			viewBuilder.Init(_body, _userData, _savedData);
 
 			_currentBuilderAdapter = builderAdapter;
 			

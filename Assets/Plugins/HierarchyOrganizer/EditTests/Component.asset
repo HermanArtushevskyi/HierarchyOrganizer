@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Component
   m_EditorClassIdentifier: 
   _reference:
-    MonoBehaviourName: Camera
+    MonoBehaviourName: UIDocument
   _mode: 0

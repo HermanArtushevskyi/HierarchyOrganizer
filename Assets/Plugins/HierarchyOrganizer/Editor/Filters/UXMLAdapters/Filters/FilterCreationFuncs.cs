@@ -1,5 +1,6 @@
 ﻿using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {

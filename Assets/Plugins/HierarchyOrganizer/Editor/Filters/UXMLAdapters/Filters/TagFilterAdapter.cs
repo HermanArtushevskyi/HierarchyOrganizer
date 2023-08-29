@@ -3,6 +3,7 @@ using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
@@ -18,6 +19,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public event Action<TagFilterElementAdapter> OnDelete = null;
 
+	
+	
 		public void Init(VisualElement root)
 		{
 			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();

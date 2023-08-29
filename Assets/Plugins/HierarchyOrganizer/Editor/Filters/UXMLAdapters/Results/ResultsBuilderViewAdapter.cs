@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
 	public class ResultsBuilderViewAdapter : IViewBuilderAdapter
@@ -27,7 +28,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			Debug.LogError("Can not initiate ResultsBuilderViewAdapter without user data");
 		}
 
-		public void Init(VisualElement root, object userData)
+		public void Init(VisualElement root, object userData, object Data)
 		{
 			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
 			_root = root;
@@ -42,12 +43,20 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		}
 
 		public bool RequestUserData(out object userData)
-		{
+		{	
 			userData = null;
 			return false;
 		}
 
-		public void Destroy()
+        public bool SaveUserData(out object savedData)
+        {
+            savedData = null;
+            return false;
+        }
+
+
+
+        public void Destroy()
 		{
 			DestroyWithoutNotification();
 			OnDestroy?.Invoke(this);
