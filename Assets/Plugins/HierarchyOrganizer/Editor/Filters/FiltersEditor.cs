@@ -14,8 +14,7 @@ namespace HierarchyOrganizer.Editor.Filters
 		private IViewBuilderAdapter _currentBuilderAdapter;
 
 		private object _userData;
-        private object _savedData;
-
+       
 
 
         [MenuItem("LonelyStudio/HierarchyOrganizer/Find", priority = 1)]
@@ -40,11 +39,9 @@ namespace HierarchyOrganizer.Editor.Filters
 		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter) 
 		{
 			if (_currentBuilderAdapter == builderAdapter) return _currentBuilderAdapter;
-			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)&& _currentBuilderAdapter.SaveUserData(out var savedData))
-			{
-				_userData = userData;
-				_savedData = savedData;
-			}
+			if (_currentBuilderAdapter != null && _currentBuilderAdapter.RequestUserData(out var userData)) _userData = userData;
+
+          
 			
 			
 				
@@ -54,7 +51,7 @@ namespace HierarchyOrganizer.Editor.Filters
 			
 			IViewBuilderAdapter viewBuilder = builderAdapter;
 	
-			viewBuilder.Init(_body, _userData, _savedData);
+			viewBuilder.Init(_body, _userData);
 
 			_currentBuilderAdapter = builderAdapter;
 			

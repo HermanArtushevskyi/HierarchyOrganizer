@@ -29,7 +29,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
         public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
 
 		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
-        private readonly List<ISceneFilterElementAdapter> _savedFilters = new List<ISceneFilterElementAdapter>();
+      //  private readonly List<ISceneFilterElementAdapter> _savedFilters = new List<ISceneFilterElementAdapter>();
+
 
 
         public FiltersBuilderViewBuilderAdapter()
@@ -47,18 +48,21 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
 		public void Init(VisualElement root)
 		{
-			Init(root, null, null);
+			Init(root, null);
 
 		}
 
-		public void Init(VisualElement root, object Data, object savedData)
+		public void Init(VisualElement root, object userData)
 		{
 			_root = root;
 			AddUXML(root);
 			RegisterButtons();
-			if(savedData != null) _savedFilters.AddRange((List<ISceneFilterElementAdapter>)savedData);
-          
-            LoadSavedData();
+			if (userData != null) _addedFilters.AddRange((List<ISceneFilterElementAdapter>)userData);
+             
+            
+			
+            GetAdapter();
+
 
         }
 
@@ -69,13 +73,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
           return true;
             
         }
-        public bool SaveUserData(out object savedData)
-        {
+ 
 
-            savedData = _addedFilters;
-            return true;
-
-        }
 
 
 
@@ -100,42 +99,16 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			_addButton = _el.Q<Button>("addBtn");
 			_clearButton = _el.Q<Button>("clearBtn");
 		}
-		
-        private void LoadSavedData()
+
+     
+
+        private void GetAdapter()
         {
-          
-            foreach (ISceneFilterElementAdapter elementAdapter in _savedFilters)
-            {
-               
-                Type adapterType = elementAdapter.GetType();
-                
-                AvailableFilter filter;
-              
-                if (typeof(TagFilterElementAdapter).IsAssignableFrom(adapterType))
-                {
-                    filter = AvailableFilter.Tag;
-				
 
-                }
-                else if (typeof(ComponentFilterElementAdapter).IsAssignableFrom(adapterType))
-                {
-                    filter = AvailableFilter.Component;
-                   
-                }
-                else if (typeof(NameFilterElementAdapter).IsAssignableFrom(adapterType))
-                {
-                     filter = AvailableFilter.Name;
-                 
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unknown adapter type");
-                }
-                FilterToFunc[filter].Invoke(_scrollView);
-               
-			
-
-            }
+            foreach (ISceneFilterElementAdapter adapter in _addedFilters)
+			{
+				adapter.Init(_scrollView);
+			}
 
         }
 
@@ -146,6 +119,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 
         private void RegisterButtons()
 		{
+
             _addButton.clicked += () => FilterToFunc[(AvailableFilter)_enumField.value].Invoke(_scrollView);
             _clearButton.clicked += () =>
 			{

@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
@@ -16,15 +17,16 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private EnumField _modeField;
 		private TextField _textField;
 		private Button _deleteButton;
-
-		public event Action<TagFilterElementAdapter> OnDelete = null;
+		private string _value;
+       
+        public event Action<TagFilterElementAdapter> OnDelete = null;
 
 	
 	
 		public void Init(VisualElement root)
 		{
 			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
-			
+
 			_root = root;
 			root.Add(_el);
 			
@@ -33,7 +35,8 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			_el.Q<Button>().clicked += Destroy;
 
 			_modeField.Init(FilterTag.Mode.Is);
-			_textField.value = "";
+		    _textField.value = "";
+			
 		}
 
 		public ISceneFilter GetFilter() => new FilterTag(_textField.value, (FilterTag.Mode) _modeField.value);

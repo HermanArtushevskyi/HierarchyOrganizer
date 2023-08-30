@@ -28,7 +28,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			Debug.LogError("Can not initiate ResultsBuilderViewAdapter without user data");
 		}
 
-		public void Init(VisualElement root, object userData, object Data)
+		public void Init(VisualElement root, object userData)
 		{
 			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
 			_root = root;
@@ -47,13 +47,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			userData = null;
 			return false;
 		}
-
-        public bool SaveUserData(out object savedData)
-        {
-            savedData = null;
-            return false;
-        }
-
+   
 
 
         public void Destroy()
