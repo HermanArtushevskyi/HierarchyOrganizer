@@ -6,8 +6,7 @@ using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	// TODO: Implement loading data after switching between tabs
-	public partial class FiltersBuilderViewBuilderAdapter : IViewBuilderAdapter
+	public partial class FiltersViewBuilderAdapter : IViewBuilderAdapter
 	{
 		private const string UXML_PATH =
 			"Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/FiltersBuilderView.uxml";
@@ -23,12 +22,12 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private Button _clearButton = null;
 		#endregion
 
-		public event Action<FiltersBuilderViewBuilderAdapter> OnDestroy;
+		public event Action<FiltersViewBuilderAdapter> OnDestroy;
 
 		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
        
 
-        public FiltersBuilderViewBuilderAdapter()
+        public FiltersViewBuilderAdapter()
 		{
 			FilterToFunc = new Dictionary<AvailableFilter, Action<ScrollView>>
 			{
@@ -37,7 +36,6 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
                 {AvailableFilter.Component, AddComponentFilter},
 
                 {AvailableFilter.Name, AddNameFilter}
-
             };
 		}
 
@@ -51,16 +49,22 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		{
 			_root = root;
 			AddUXML(root);
+			if (data != null) ProcessSavedData(data as List<ISceneFilterElementAdapter>);
 			RegisterButtons();
 		}
-	
+
 		public bool RequestUserData(out object userData)
 		{
 			userData = _addedFilters;
 			
             return true;
 		}
-		
+
+
+		private void ProcessSavedData(List<ISceneFilterElementAdapter> data)
+		{
+			foreach (ISceneFilterElementAdapter adapter in data) AddFilter(_scrollView, adapter);
+		}
 
 		public void Destroy()
 		{

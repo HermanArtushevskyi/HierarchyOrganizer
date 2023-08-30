@@ -3,31 +3,20 @@ using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public partial class FiltersBuilderViewBuilderAdapter
+	public partial class FiltersViewBuilderAdapter
 	{
-		private void AddTagFilter(ScrollView view)
-		{
-			TagFilterElementAdapter elementAdapter = new TagFilterElementAdapter();
-			elementAdapter.Init(view);
-			_addedFilters.Add(elementAdapter);
-			elementAdapter.OnDelete += DeleteFilterFromList;
-		}
-        private void AddNameFilter(ScrollView view)
-        {
-            NameFilterElementAdapter elementAdapter = new NameFilterElementAdapter();
-            elementAdapter.Init(view);
-            _addedFilters.Add(elementAdapter);
-            elementAdapter.OnDelete += DeleteFilterFromList;
-        }
+		private void AddTagFilter(ScrollView view) => AddFilter(view, new TagFilterElementAdapter());
 
-        private void AddComponentFilter(ScrollView view)
-        {
-            ComponentFilterElementAdapter elementAdapter = new ComponentFilterElementAdapter();
-            elementAdapter.Init(view);
-            _addedFilters.Add(elementAdapter);
-            elementAdapter.OnDelete += DeleteFilterFromList;
-        }
+		private void AddNameFilter(ScrollView view) => AddFilter(view, new NameFilterElementAdapter());
 
+        private void AddComponentFilter(ScrollView view) => AddFilter(view, new ComponentFilterElementAdapter());
+
+        private void AddFilter(ScrollView view, ISceneFilterElementAdapter adapter)
+        {
+	        adapter.Init(view);
+	        _addedFilters.Add(adapter);
+	        adapter.OnDelete += DeleteFilterFromList;
+        }
 
         private void DeleteFilterFromList(ISceneFilterElementAdapter elementAdapter) => _addedFilters.Remove(elementAdapter);
 	}

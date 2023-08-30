@@ -28,10 +28,10 @@ namespace HierarchyOrganizer.Editor.Filters
 			rootVisualElement.Add(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate());
 			_body = rootVisualElement.Q<VisualElement>("Body");
 
-			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
+			rootVisualElement.Q<Button>("filtersBtn").clicked += () => SwitchAdapter(new FiltersViewBuilderAdapter());
 			rootVisualElement.Q<Button>("resultsBtn").clicked += () => SwitchAdapter(new ResultsBuilderViewAdapter());
 			
-			_currentBuilderAdapter = SwitchAdapter(new FiltersBuilderViewBuilderAdapter());
+			_currentBuilderAdapter = SwitchAdapter(new FiltersViewBuilderAdapter());
 		}
 
 		private IViewBuilderAdapter SwitchAdapter(IViewBuilderAdapter builderAdapter)

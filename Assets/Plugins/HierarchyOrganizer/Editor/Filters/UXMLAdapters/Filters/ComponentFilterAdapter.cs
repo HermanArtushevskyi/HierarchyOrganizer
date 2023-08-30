@@ -1,107 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
+using HierarchyOrganizer.Editor.Common;
 using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-    public class ComponentFilterElementAdapter : ISceneFilterElementAdapter
+    public class ComponentFilterElementAdapter : FilterAdapterBase
     {
-        private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/Filters/ComponentFilterView.uxml";
+        private static readonly string _uxmlPath = SettingsProvider.GetPluginPath() + 
+                                                   "Editor/Filters/UXML/Filters/ComponentFilterView.uxml";
 
-        private VisualElement _root;
-        private TemplateContainer _el;
         private EnumField _modeField;
-
         private DropdownField _dropField;
-        private Button _deleteButton;
 
-        public event Action<ComponentFilterElementAdapter> OnDelete = null;
-
-        public void Init(VisualElement root)
+        public override void Init(VisualElement root)
         {
-            _el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
+            Element = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(_uxmlPath).Instantiate();
 
-            _root = root;
-            root.Add(_el);
+            Root = root;
+            root.Add(Element);
 
-            _modeField = _el.Q<EnumField>();
-
-            _dropField = _el.Q<DropdownField>();
-            _el.Q<Button>().clicked += Destroy;
-
-            _modeField.Init(FilterComponent.Mode.Contains);
-            ComponentFilterDropdown();
-
+            if (!IsInitiated) InitiateNew();
+            else Reinitialize();
         }
 
+        private void InitiateNew()
+        {
+            _modeField = Element.Q<EnumField>();
 
-        public ISceneFilter GetFilter()
+            _dropField = Element.Q<DropdownField>();
+            _dropField.choices = HierarchyProjectUtils.GetAllMonoBehavioursNamesInProjectAsync().ToList();
+            
+            Element.Q<Button>().clicked += Destroy;
+
+            _modeField.Init(FilterComponent.Mode.Contains);
+            IsInitiated = true;
+        }
+
+        private void Reinitialize()
+        {
+            EnumField elEnum = Element.Q<EnumField>();
+            elEnum.Init(_modeField.value);
+            _modeField = elEnum;
+
+            DropdownField elDropdown = Element.Q<DropdownField>();
+            elDropdown.choices = HierarchyProjectUtils.GetAllMonoBehavioursNamesInProjectAsync().ToList();
+            elDropdown.value = _dropField.value;
+            _dropField = elDropdown;
+            
+            Element.Q<Button>().clicked += Destroy;
+        }
+        
+        public override ISceneFilter GetFilter()
         {
             var mode = (FilterComponent.Mode)_modeField.value;
             var filterValue = _dropField.text;
             return new FilterComponent(filterValue, mode);
         }
 
-        public bool ValidateGameObject(GameObject go)
-        {
-            return new FilterComponent(_dropField.text, (FilterComponent.Mode)_modeField.value).MeetsRequirements(go);
-        }
-
-
-        public void Destroy()
-        {
-            DestroyWithoutNotification();
-            OnDelete?.Invoke(this);
-        }
-
-        public void DestroyWithoutNotification() => _root.Remove(_el);
-
-
-      
-        private void ComponentFilterDropdown()
-        {
-            
-            var componentNames = new HashSet<string>();
-
-            
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-             var scene = SceneManager.GetSceneAt(i);
-             var rootObjects = scene.GetRootGameObjects();
-            
-                foreach (var rootObject in rootObjects)
-                {
-                    
-                    var components = rootObject.GetComponents(typeof(Component));
-
-                  
-                    foreach (var component in components)
-                    {
-                       
-                        var componentName = component.GetType().Name;
-
-                       
-                        componentNames.Add(componentName);
-                    }
-                }
-            }
-
-            var choices = new List<string>(componentNames);
-
-            _dropField.choices = choices;
-
-         
-            if (choices.Count > 0)
-            {
-                _dropField.value = choices[0];
-            }
-
-        }
-
+        public override bool ValidateGameObject(GameObject go) => GetFilter().MeetsRequirements(go);
     }
 }

@@ -14,7 +14,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		private const string UXML_PATH =
 			"Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/ResultsBuilderView.uxml";
 		
-		private List<ISceneFilterElementAdapter> _appliedFilters;
+		private List<ISceneFilterElementAdapter> _appliedFilters = new();
 
 		private TemplateContainer _el = null;
 		private VisualElement _root = null;

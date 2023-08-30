@@ -1,51 +1,58 @@
-﻿using System;
-using HierarchyOrganizer.Editor.Interfaces.Filters;
+﻿using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using SettingsProvider = HierarchyOrganizer.Editor.Settings.SettingsProvider;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 {
-	public class TagFilterElementAdapter : ISceneFilterElementAdapter
+	public class TagFilterElementAdapter : FilterAdapterBase
 	{
-		private const string UXML_PATH = "Assets/Plugins/HierarchyOrganizer/Editor/Filters/UXML/Filters/TagFilterView.uxml";
+		private static readonly string _uxmlPath = SettingsProvider.GetPluginPath() +
+		                                           "Editor/Filters/UXML/Filters/TagFilterView.uxml";
 
-		private VisualElement _root;
-		private TemplateContainer _el;
 		private EnumField _modeField;
 		private TextField _textField;
-		private Button _deleteButton;
-
-		public event Action<TagFilterElementAdapter> OnDelete = null;
-
-		public void Init(VisualElement root)
+        
+		public override void Init(VisualElement root)
 		{
-			_el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
-			
-			_root = root;
-			root.Add(_el);
-			
-			_modeField = _el.Q<EnumField>();
-			_textField = _el.Q<TextField>();
-			_el.Q<Button>().clicked += Destroy;
+			Element = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(_uxmlPath).Instantiate();
+
+			Root = root;
+			root.Add(Element);
+
+			if (!IsInitiated) InitiateNew();
+			else Reinitialize();
+		}
+
+		private void InitiateNew()
+		{
+			_modeField = Element.Q<EnumField>();
+			_textField = Element.Q<TextField>();
+			Element.Q<Button>().clicked += Destroy;
 
 			_modeField.Init(FilterTag.Mode.Is);
 			_textField.value = "";
+
+			IsInitiated = true;
 		}
 
-		public ISceneFilter GetFilter() => new FilterTag(_textField.value, (FilterTag.Mode) _modeField.value);
-
-		public bool ValidateGameObject(GameObject go)
+		private void Reinitialize()
 		{
-			return new FilterTag(_textField.value, (FilterTag.Mode) _modeField.value).MeetsRequirements(go);
+			EnumField elementEnum = Element.Q<EnumField>();
+			elementEnum.Init(_modeField.value);
+			_modeField = elementEnum;
+
+			TextField elementText = Element.Q<TextField>();
+			elementText.value = _textField.value;
+			_textField = elementText;
+
+			Element.Q<Button>().clicked += Destroy;
 		}
 
-		public void Destroy()
-		{
-			DestroyWithoutNotification();
-			OnDelete?.Invoke(this);
-		}
+		public override ISceneFilter GetFilter() => new FilterTag(_textField.value, (FilterTag.Mode) _modeField.value);
 
-		public void DestroyWithoutNotification() => _root.Remove(_el);
+		public override bool ValidateGameObject(GameObject go) => GetFilter().MeetsRequirements(go);
 	}
 }

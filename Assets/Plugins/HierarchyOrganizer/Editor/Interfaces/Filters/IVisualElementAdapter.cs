@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Interfaces.Filters
 {
@@ -7,6 +8,5 @@ namespace HierarchyOrganizer.Editor.Interfaces.Filters
 		public void Init(VisualElement root);
 		public void Destroy();
 		public void DestroyWithoutNotification();
-		
 	}
 }
