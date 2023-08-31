@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
