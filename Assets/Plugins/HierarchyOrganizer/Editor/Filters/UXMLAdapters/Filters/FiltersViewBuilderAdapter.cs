@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HierarchyOrganizer.Editor.Interfaces.Filters;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
@@ -25,7 +26,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		public event Action<FiltersViewBuilderAdapter> OnDestroy;
 
 		private readonly List<ISceneFilterElementAdapter> _addedFilters = new List<ISceneFilterElementAdapter>();
-       
+
 
         public FiltersViewBuilderAdapter()
 		{
@@ -56,7 +57,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 		public bool RequestUserData(out object userData)
 		{
 			userData = _addedFilters;
-			
+
             return true;
 		}
 
@@ -71,7 +72,7 @@ namespace HierarchyOrganizer.Editor.Filters.UXMLAdapters
 			DestroyWithoutNotification();
 			OnDestroy?.Invoke(this);
 		}
-		
+
 		public void DestroyWithoutNotification()
 		{
 			_root.Clear();
