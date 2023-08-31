@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="scrollView" horizontal-scroller-visibility="Hidden" style="width: 95%; height: auto; align-self: center; justify-content: flex-end; align-items: stretch; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-top: 0; min-height: 50px; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
+        <ui:VisualElement name="btns" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-start; flex-direction: row; justify-content: flex-end; width: 95%; flex-shrink: 0;">
+            <ui:Button text="Add" display-tooltip-when-elided="true" name="addBtn" />
+            <ui:Button text="Clear" display-tooltip-when-elided="true" name="clearBtn" />
+            <ui:Button text="Save" display-tooltip-when-elided="true" name="saveBtn" style="flex-direction: row; background-color: rgb(99, 173, 107);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

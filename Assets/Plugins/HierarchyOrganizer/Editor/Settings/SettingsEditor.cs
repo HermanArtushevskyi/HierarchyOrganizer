@@ -10,8 +10,8 @@ namespace HierarchyOrganizer.Editor.Settings
 {
 	public class SettingsEditor : EditorWindow
 	{
-		private const string ROOT_XML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Settings/UXML/SettingsViewDocument.uxml";
+		private static string ROOT_XML_PATH = SettingsProvider.GetPluginPath() + 
+		                                      "Editor/Settings/UXML/SettingsViewDocument.uxml";
 		
 		private static SettingsEditor window { get; set; }
 		
@@ -57,38 +57,20 @@ namespace HierarchyOrganizer.Editor.Settings
 			
 			foreach (FieldInfo field in settingsType.GetFields())
 			{
-				if (ProcessVariable(field, out ISettingsVariable variable))
+				ISettingsVariable variable = ProcessVariable(field);
+				if (variable != null)
+				{
 					variables.Add(variable);
+					variable.Init(_scrollView);
+				}
 			}
 			
 			return variables;
 		}
 
-		private bool ProcessVariable(FieldInfo field, out ISettingsVariable variable)
+		private ISettingsVariable ProcessVariable(FieldInfo field)
 		{
-			string fieldName = field.Name;
-			string fieldAlias = null;
-
-			VariableAliasAttribute aliasAttribute = field.GetCustomAttribute<VariableAliasAttribute>();
-
-			if (aliasAttribute != null) fieldAlias = aliasAttribute.Alias;
-			
-			if (field.FieldType == typeof(bool))
-			{
-				variable = new SettingsVariableBool(fieldName, fieldAlias, _scrollView);
-				return true;
-			}
-
-			if (field.FieldType == typeof(Action))
-			{
-				variable = null;
-				return false;
-			}
-
-			Debug.LogWarning($"HierarchySettings: Type {field.FieldType} is not supported");
-
-			variable = null;
-			return false;
+			return SettingsVariableBase.ProcessVariable(field, field.Name);
 		}
 	}
 }

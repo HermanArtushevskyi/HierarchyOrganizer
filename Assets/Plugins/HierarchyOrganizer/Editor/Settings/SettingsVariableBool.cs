@@ -1,32 +1,26 @@
-﻿using System;
-using System.Reflection;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Settings
 {
 	public sealed class SettingsVariableBool : SettingsVariableBase
 	{
-		private const string UXML_PATH =
-			"Assets/Plugins/HierarchyOrganizer/Editor/Settings/UXML/SettingsBoolField.uxml";
+		private static string UXML_PATH = SettingsProvider.GetPluginPath() + 
+		                                  "Editor/Settings/UXML/SettingsBoolField.uxml";
 
-		private bool _value;
 		private Toggle _toggle;
 
-		public SettingsVariableBool(string name, string alias, ScrollView list) : base(name, alias, list)
+		public SettingsVariableBool(string name, string alias) : base(name, alias)
 		{
 		}
 
-		public override void SetValue(object val) => _value = (bool) val;
+		public override void SetValue(object val) => _toggle.value = (bool) val;
 
-		public override void SaveValue()
-		{
-			Type type = typeof(HierarchySettings);
-			FieldInfo field = type.GetField(VariableName);
-			field.SetValue(null, _toggle.value);
-		}
+		public override void SaveValue() => EditorPrefs.SetBool(VariableName, _toggle.value);
 
-		protected override void AddUxml(ScrollView list)
+		protected override object GetCurrentVariable() => EditorPrefs.GetBool(VariableName);
+		
+		protected override void AddUxml(VisualElement list)
 		{
 			TemplateContainer el = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_PATH).Instantiate();
 			
@@ -36,7 +30,6 @@ namespace HierarchyOrganizer.Editor.Settings
 			
 			_toggle = el.Q<Toggle>("Toggle");
 			_toggle.value = (bool) GetCurrentVariable();
-			_value = _toggle.value;
 			
 			list.Add(el);
 		}

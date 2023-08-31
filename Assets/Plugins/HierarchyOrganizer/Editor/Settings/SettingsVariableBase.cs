@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using HierarchyOrganizer.Editor.Interfaces.EditorView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace HierarchyOrganizer.Editor.Settings
@@ -9,28 +11,48 @@ namespace HierarchyOrganizer.Editor.Settings
 		protected string VariableName;
 		protected string VariableAlias;
 		
-		protected SettingsVariableBase(string name, string alias, ScrollView list)
+		protected SettingsVariableBase(string name, string alias)
 		{
 			VariableName = name;
 			VariableAlias = alias;
-			AddUxml(list);
 		}
 
 		public abstract void SetValue(object val);
 
 		public abstract void SaveValue();
-
-		protected abstract void AddUxml(ScrollView list);
-		
-		protected object GetCurrentVariable()
+		public void Init(VisualElement root)
 		{
-			FieldInfo field = typeof(HierarchySettings).GetField(VariableName);
-			return field.GetValue(null);
+			AddUxml(root);
 		}
+
+		protected abstract void AddUxml(VisualElement list);
+
+		protected abstract object GetCurrentVariable();
 
 		protected void ApplyAlias(Label label)
 		{
 			if (VariableAlias != null) label.text = VariableAlias;
+		}
+
+		public static ISettingsVariable ProcessVariable(FieldInfo type, string name)
+		{
+			ISettingsVariable result;
+			string alias = null;
+			
+			VariableAliasAttribute aliasAttribute = type.GetCustomAttribute<VariableAliasAttribute>();
+
+			if (aliasAttribute != null) alias = aliasAttribute.Alias;
+			
+			if (type.FieldType == typeof(bool))
+				return new SettingsVariableBool(name, alias);
+
+			if (type.FieldType == typeof(string))
+				return new SettingsVariableString(name, alias);
+
+			Debug.LogWarning($"HierarchySettings: Type {type} is not supported");
+
+			result = null;
+			return result;
 		}
 	}
 }

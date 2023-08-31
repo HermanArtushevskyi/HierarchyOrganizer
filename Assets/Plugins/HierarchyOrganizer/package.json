@@ -1,17 +1,21 @@
 ﻿{
   "name": "com.LonelyStudio.HierarchyOrganizer",
-  "version": "0.0.1",
   "displayName": "HierarchyOrganizer",
-  "unity": "2018.1",
+  "version": "1.0.0",
+  "unity": "2022.3",
   "documentationUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer",
   "licensesUrl": "https://github.com/ArtushevskiiGerman/HierarchyOrganizer/blob/master/LICENSE.md",
   "dependencies": {
-    "com.unity.editorcoroutines": "1.0.0"
+    "net.tnrd.serializableinterface": "https://github.com/Thundernerd/Unity3D-SerializableInterface.git",
   },
-  "keywords": ["hierarchy", "organizer", "LonelyStudio"],
+  "keywords":
+  ["hierarchy",
+    "organizer",
+    "LonelyStudio"],
+
   "author": {
-    "name": "Herman Artushevskyi",
-    "email": "germanartushevskii@gmail.com",
+    "name": "LonelyStudio",
+    "email": "lonelyteamstudio@gmail.com",
     "url": "https://github.com/ArtushevskiiGerman"
   }
 }
